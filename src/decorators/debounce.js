@@ -33,7 +33,6 @@ export default function (debounceTime) {
       }
 
       render () {
-        console.log('rerendering', this.state.propsIndex)
         return <Child ref='child' debouncing={this.state.debouncing} {...this.state.props} />
       }
 

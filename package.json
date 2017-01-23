@@ -1,6 +1,6 @@
 {
   "name": "orionsoft-parts",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "index.js",
   "repository": "http://github.com/orionsoft/parts",
   "author": "nicolaslopezj",
@@ -27,10 +27,11 @@
     "standard": "*"
   },
   "peerDependencies": {
-    "react": "^15.4.1"
+    "moment": "^2.17.1"
   },
   "dependencies": {
     "autobind-decorator": "^1.3.4",
-    "lodash": "^4.17.3"
+    "lodash": "^4.17.3",
+    "reactcss": "^1.1.1"
   }
 }
