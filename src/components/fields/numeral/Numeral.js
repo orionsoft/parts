@@ -56,6 +56,7 @@ export default class NComponent extends React.Component {
           onChange={this.onChange}
           onKeyDown={this.onKeyDown}
           {...this.props.passProps} />
+        <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )
   }

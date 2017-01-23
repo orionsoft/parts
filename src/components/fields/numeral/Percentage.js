@@ -79,6 +79,7 @@ export default class PercentageComponent extends React.Component {
           onBlur={this.onBlur}
           onKeyDown={this.onKeyDown}
           {...this.props.passProps} />
+        <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )
   }

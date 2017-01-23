@@ -8,7 +8,8 @@ export default class Text extends React.Component {
     value: React.PropTypes.string,
     fieldType: React.PropTypes.string,
     passProps: React.PropTypes.object,
-    placeholder: React.PropTypes.node
+    placeholder: React.PropTypes.node,
+    errorMessage: React.PropTypes.node
   }
 
   static defaultProps = {
@@ -25,6 +26,7 @@ export default class Text extends React.Component {
           placeholder={this.props.placeholder}
           onChange={event => this.props.onChange(event.target.value)}
           {...this.props.passProps} />
+        <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )
   }

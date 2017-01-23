@@ -59,6 +59,7 @@ export default class DateTextField extends React.Component {
           onChange={(event) => this.onChange(event.target.value)}
           onBlur={this.onBlur}
           {...this.props.passProps} />
+        <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )
   }

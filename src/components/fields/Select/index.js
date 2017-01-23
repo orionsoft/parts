@@ -1,6 +1,7 @@
 import React from 'react'
 import Select from 'react-select'
 import autobind from 'autobind-decorator'
+import styles from '../Text/styles'
 
 export default class Text extends React.Component {
 
@@ -9,7 +10,8 @@ export default class Text extends React.Component {
     onChange: React.PropTypes.func,
     value: React.PropTypes.any,
     passProps: React.PropTypes.object,
-    options: React.PropTypes.array
+    options: React.PropTypes.array,
+    errorMessage: React.PropTypes.node
   }
 
   @autobind
@@ -31,6 +33,7 @@ export default class Text extends React.Component {
           onChange={this.onChange}
           {...this.props.passProps}
         />
+        <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )
   }

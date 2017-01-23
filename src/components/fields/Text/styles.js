@@ -15,6 +15,10 @@ export default reactCSS({
       backgroundColor: '#eee',
       padding: '10px',
       outline: 'none'
+    },
+    error: {
+      color: '#ff3030',
+      marginTop: 10
     }
   }
 })
