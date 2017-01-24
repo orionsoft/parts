@@ -23,7 +23,6 @@ export default class WithMessage extends React.Component {
     const options = {
       message,
       level: 'info',
-      autoDismiss: 0,
       ...passedOptions
     }
     this.refs.notificationSystem.addNotification(options)
