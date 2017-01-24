@@ -2966,6 +2966,12 @@ react-input-autosize@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/react-input-autosize/-/react-input-autosize-1.1.0.tgz#3fe1ac832387d8abab85f6051ceab1c9e5570853"
 
+react-notification-system@^0.2.11:
+  version "0.2.11"
+  resolved "https://registry.npmjs.org/react-notification-system/-/react-notification-system-0.2.11.tgz#c954ab7f3c355b34ca5f85d6b3fc4236070e7788"
+  dependencies:
+    object-assign "^4.0.1"
+
 react-select@^1.0.0-rc.2:
   version "1.0.0-rc.2"
   resolved "https://registry.npmjs.org/react-select/-/react-select-1.0.0-rc.2.tgz#9fc11b149a3dc1ac831289d21b40a59742f82f8d"
