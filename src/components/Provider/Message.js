@@ -22,7 +22,8 @@ export default class WithMessage extends React.Component {
   showMessage (message, passedOptions) {
     const options = {
       message,
-      level: 'success',
+      level: 'info',
+      autoDismiss: 0,
       ...passedOptions
     }
     this.refs.notificationSystem.addNotification(options)
@@ -42,6 +43,16 @@ export default class WithMessage extends React.Component {
       Dismiss: {
         DefaultStyle: {
           display: 'none'
+        }
+      },
+      Action: {
+        DefaultStyle: {
+          outline: 'none',
+          cursor: 'pointer'
+        },
+        info: {
+          backgroundColor: '#fff',
+          color: '#000'
         }
       }
     }
