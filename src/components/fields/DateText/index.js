@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from '../Text/styles'
+import SetTodayIcon from 'react-icons/lib/md/today'
+import autobind from 'autobind-decorator'
 const moment = global.moment
 if (!moment) {
   throw new Error('Moment is required in global variable')
@@ -17,10 +19,11 @@ export default class DateTextField extends React.Component {
     passProps: React.PropTypes.object
   }
 
-  constructor (props) {
-    super(props)
-    this.state = {text: ''}
-    this.onBlur = this.onBlur.bind(this)
+  state = {text: ''}
+
+  @autobind
+  setToday () {
+    this.props.onChange(new Date())
   }
 
   getValue () {
@@ -44,21 +47,32 @@ export default class DateTextField extends React.Component {
     this.props.onChange(newValue.toDate())
   }
 
+  @autobind
   onBlur () {
     if (!this.props.value) {
       this.setState({text: ''})
     }
   }
 
+  renderSetToday () {
+    if (this.props.value && (new Date(this.props.value)).toDateString() === (new Date()).toDateString()) return
+    return <SetTodayIcon style={{cursor: 'pointer'}} size={25} onClick={this.setToday} />
+  }
+
   render () {
     return (
-      <div style={styles.container}>
-        <input
-          style={styles.input}
-          value={this.getValue()}
-          onChange={(event) => this.onChange(event.target.value)}
-          onBlur={this.onBlur}
-          {...this.props.passProps} />
+      <div>
+        <div style={styles.container}>
+          <input
+            style={styles.input}
+            value={this.getValue()}
+            onChange={(event) => this.onChange(event.target.value)}
+            onBlur={this.onBlur}
+            {...this.props.passProps} />
+          <div style={styles.otherContainer}>
+            {this.renderSetToday()}
+          </div>
+        </div>
         <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )
