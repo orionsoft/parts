@@ -12,6 +12,12 @@ export default class WithMessage extends React.Component {
     showMessage: React.PropTypes.func
   }
 
+  getChildContext () {
+    return {
+      showMessage: this.showMessage
+    }
+  }
+
   @autobind
   showMessage (message, passedOptions) {
     const options = {
@@ -38,12 +44,6 @@ export default class WithMessage extends React.Component {
           display: 'none'
         }
       }
-    }
-  }
-
-  getChildContext () {
-    return {
-      showMessage: this.showMessage
     }
   }
 

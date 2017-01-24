@@ -6,10 +6,11 @@
   "author": "nicolaslopezj",
   "license": "MIT",
   "scripts": {
-    "build": "babel ./src --out-dir ./lib",
-    "prepublish": "npm run build",
-    "test": "npm run lint && jest",
-    "watch": "watch npm\\ run\\ build ./src",
+    "build": "babel ./src --out-dir ./lib && yarn run build-styles",
+    "build-styles": "find src/ -name '*.less' -exec lessc {} \\; > ./lib/styles.css",
+    "prepublish": "yarn run build",
+    "test": "yarn run lint && jest",
+    "watch": "watch yarn\\ run\\ build ./src",
     "test-watch": "jest --watch",
     "lint": "standard \"src/**/*.js\""
   },
@@ -24,8 +25,10 @@
     "babel-preset-stage-2": "^6.5.0",
     "eslint": ">=3.0.0",
     "jest-cli": "^15.1.1",
+    "less": "^2.7.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-router": "^3.0.1",
     "react-select": "^1.0.0-rc.2",
     "standard": "*"
   },
@@ -33,10 +36,12 @@
     "moment": "^2.17.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-router": "^3.0.1",
     "react-select": "^1.0.0-rc.2"
   },
   "dependencies": {
     "autobind-decorator": "^1.3.4",
+    "boron": "^0.2.3",
     "lodash": "^4.17.3",
     "object-path": "^0.11.3",
     "react-icons": "^2.2.3",

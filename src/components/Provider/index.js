@@ -1,5 +1,6 @@
 import React from 'react'
 import Message from './Message'
+import Modal from './Modal'
 
 export default class OrionsoftProvider extends React.Component {
 
@@ -10,7 +11,9 @@ export default class OrionsoftProvider extends React.Component {
   render () {
     return (
       <Message>
-        {this.props.children}
+        <Modal>
+          {this.props.children}
+        </Modal>
       </Message>
     )
   }
