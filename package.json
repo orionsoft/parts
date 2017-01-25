@@ -1,6 +1,6 @@
 {
   "name": "orionsoft-parts",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "main": "index.js",
   "repository": "http://github.com/orionsoft/parts",
   "author": "nicolaslopezj",
@@ -44,6 +44,7 @@
     "boron": "^0.2.3",
     "lodash": "^4.17.3",
     "object-path": "^0.11.3",
+    "react-autocomplete": "^1.4.0",
     "react-icons": "^2.2.3",
     "react-notification-system": "^0.2.11",
     "reactcss": "^1.1.1"

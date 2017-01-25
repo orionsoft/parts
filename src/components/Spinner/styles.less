@@ -1,0 +1,15 @@
+.os_spinner {
+  border-radius: 50%;
+  transform: rotateZ(0);
+  animation: os_spinner_spin 0.6s linear infinite;
+  transition: opacity 0.5s linear;
+}
+
+@keyframes os_spinner_spin {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
