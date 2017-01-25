@@ -20,15 +20,20 @@ export default class AutocompleteField extends React.Component {
 
   constructor (props) {
     super(props)
-    this.fetch = debounce(this.fetch, 150)
+    this.fetch = debounce(this.fetch, 100)
   }
 
-  componentWillReceiveProps (nextProps) {
-    if (!nextProps.value) return this.setState({items: []})
-    if (nextProps.value !== this.props.value) {
-      this.setState({loading: true})
-      this.fetch(nextProps.value)
-    }
+  @autobind
+  onSelect (value) {
+    this.props.onChange(value)
+  }
+
+  @autobind
+  onChange (event) {
+    const value = event.target.value
+    this.setState({loading: true})
+    this.fetch(value)
+    this.props.onChange(value)
   }
 
   async fetch (search) {
@@ -53,13 +58,13 @@ export default class AutocompleteField extends React.Component {
       <div>
         <div style={styles.container}>
           <Autocomplete
-            inputProps={{ style: styles.input, placeholder: this.props.placeholder }}
+            inputProps={{ style: styles.input, placeholder: this.props.placeholder, onFocus: () => this.fetch('') }}
             menuStyle={styles.menu}
             wrapperStyle={styles.wrapper}
             value={this.props.value}
             items={this.state.items}
-            onSelect={value => this.props.onChange(value)}
-            onChange={event => this.props.onChange(event.target.value)}
+            onSelect={this.onSelect}
+            onChange={this.onChange}
             renderItem={this.renderItem}
             getItemValue={item => item}
             {...this.props.passProps} />
