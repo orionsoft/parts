@@ -1,5 +1,6 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
+import Loading from '../../Loading'
 
 const styles = {
   inputContainer: {
@@ -24,6 +25,16 @@ const styles = {
     right: 0,
     textAlign: 'right',
     top: 0
+  },
+  loading: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    padding: 10
   }
 }
 
@@ -45,7 +56,6 @@ export default class Component extends React.Component {
     this.props.upload({
       file,
       onProgress: (progress) => {
-        console.log(progress)
         this.setState({progress})
       },
       onReady: (file) => {
@@ -67,7 +77,19 @@ export default class Component extends React.Component {
       return this.props.placeholder
     } else {
       const style = this.state.uploading ? {color: '#a9a9a9'} : {color: '#000'}
-      return <div style={style}>{this.state.fileName}</div>
+      return (
+        <div style={{...style, ...styles.fileNameContainer}}>
+          <div style={styles.fileName}>
+            {this.state.fileName}
+          </div>
+          <div style={styles.loading}>
+            <Loading
+              size={25}
+              mode='determinate'
+              value={this.state.progress * 100} />
+          </div>
+        </div>
+      )
     }
   }
 

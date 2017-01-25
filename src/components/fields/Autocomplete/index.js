@@ -3,7 +3,7 @@ import styles from './styles'
 import Autocomplete from 'react-autocomplete'
 import autobind from 'autobind-decorator'
 import debounce from 'lodash/debounce'
-import Spinner from '../../Spinner'
+import Loading from '../../Loading'
 
 export default class AutocompleteField extends React.Component {
 
@@ -68,8 +68,8 @@ export default class AutocompleteField extends React.Component {
             renderItem={this.renderItem}
             getItemValue={item => item}
             {...this.props.passProps} />
-          <div style={styles.otherContainer}>
-            <Spinner loading={this.state.loading} />
+          <div style={{...styles.otherContainer, opacity: this.state.loading ? 1 : 0}}>
+            <Loading size={25} />
           </div>
         </div>
         <div style={styles.error}>{this.props.errorMessage}</div>

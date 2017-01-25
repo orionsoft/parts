@@ -32,7 +32,9 @@ export default {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10
+    padding: 10,
+    opacity: 1,
+    transition: 'opacity 0.2s linear'
   },
   error: {
     color: '#ff3030',
