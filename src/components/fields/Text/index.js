@@ -13,7 +13,8 @@ export default class Text extends React.Component {
   }
 
   static defaultProps = {
-    fieldType: 'text'
+    fieldType: 'text',
+    value: ''
   }
 
   render () {
