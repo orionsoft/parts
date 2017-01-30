@@ -1,16 +1,18 @@
 {
   "name": "orionsoft-parts",
-  "version": "1.2.12",
+  "version": "1.2.14",
   "main": "index.js",
   "repository": "http://github.com/orionsoft/parts",
   "author": "nicolaslopezj",
   "license": "MIT",
   "scripts": {
-    "build": "babel ./src --out-dir ./lib && yarn run build-styles",
+    "build": "rm -rf ./lib && babel ./src --out-dir ./lib && yarn run build-styles",
     "build-styles": "find src/ -name '*.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "yarn run build",
     "test": "yarn run lint && jest",
     "watch": "watch yarn\\ run\\ build ./src",
+    "watch:js": "babel --watch ./src --out-dir ./lib",
+    "watch:less": "watch yarn\\ run\\ build-styles ./src",
     "test-watch": "jest --watch",
     "lint": "standard \"src/**/*.js\""
   },
@@ -46,6 +48,7 @@
     "object-path": "^0.11.3",
     "react-autocomplete": "^1.4.0",
     "react-icons": "^2.2.3",
+    "react-ios-switch": "^0.1.10",
     "react-notification-system": "^0.2.11",
     "reactcss": "^1.1.1"
   }
