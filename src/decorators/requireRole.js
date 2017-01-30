@@ -1,5 +1,6 @@
 import React from 'react'
 import includes from 'lodash/includes'
+import Button from '../components/Button'
 
 const styles = {
   container: {
@@ -14,6 +15,9 @@ const styles = {
     fontSize: 14,
     marginTop: 10,
     color: '#5c5c5c'
+  },
+  button: {
+    marginTop: 10
   }
 }
 
@@ -23,6 +27,22 @@ export default function (role) {
 
       static contextTypes = {
         me: React.PropTypes.object
+      }
+
+      renderLogin () {
+        return (
+          <div style={styles.container}>
+            <div style={styles.notAllowed}>
+              Not logged in
+            </div>
+            <div style={styles.needRole}>
+              You need to log in
+            </div>
+            <div style={styles.button}>
+              <Button to='/login' primary>Login</Button>
+            </div>
+          </div>
+        )
       }
 
       renderNotAllowed () {
@@ -39,7 +59,10 @@ export default function (role) {
       }
 
       render () {
-        const me = this.context.me || {}
+        const me = this.context.me
+        if (!me) {
+          return this.renderLogin()
+        }
         const roles = me.roles || []
         if (includes(roles, role)) {
           return <ComposedComponent {...this.props} />
