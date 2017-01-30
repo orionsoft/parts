@@ -16,7 +16,12 @@ export default class DateTextField extends React.Component {
     label: React.PropTypes.any,
     errorMessage: React.PropTypes.string,
     disabled: React.PropTypes.bool,
-    passProps: React.PropTypes.object
+    passProps: React.PropTypes.object,
+    format: React.PropTypes.string
+  }
+
+  static defaultProps = {
+    format: 'DD-MM-YYYY'
   }
 
   state = {text: ''}
@@ -27,7 +32,7 @@ export default class DateTextField extends React.Component {
   }
 
   getValue () {
-    return this.props.value ? moment(this.props.value).format('DD-MM-YYYY') : this.state.text
+    return this.props.value ? moment(this.props.value).format(this.props.format) : this.state.text
   }
 
   replaceTexts (text, previous) {
@@ -42,7 +47,7 @@ export default class DateTextField extends React.Component {
     if (this.replaceTexts(text, this.state.text)) return
     this.setState({text})
     if (text.length !== 10) return this.props.onChange(null)
-    const newValue = moment(text, 'DD-MM-YYYY')
+    const newValue = moment(text, this.props.format)
     if (!newValue.isValid()) return this.props.onChange(null)
     this.props.onChange(newValue.toDate())
   }
