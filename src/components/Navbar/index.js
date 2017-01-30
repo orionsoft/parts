@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from '../Container'
 import {Link} from 'react-router'
+import Margin from './Margin'
 
 export default class Navbar extends React.Component {
 
@@ -14,10 +15,13 @@ export default class Navbar extends React.Component {
 
   render () {
     return (
-      <div className='os_navbar'>
-        <Container>
-          {this.renderLogo()}
-        </Container>
+      <div>
+        <Margin />
+        <div className='os_navbar'>
+          <Container>
+            {this.renderLogo()}
+          </Container>
+        </div>
       </div>
     )
   }

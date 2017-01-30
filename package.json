@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./lib && babel ./src --out-dir ./lib && yarn run build-styles",
-    "build-styles": "rm ./lib/styles.css && find src/ -name '*.less' -exec lessc {} \\; > ./lib/styles.css",
+    "build-styles": "find src/ -name '*.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "yarn run build",
     "test": "yarn run lint && jest",
     "watch": "watch yarn\\ run\\ build ./src",
