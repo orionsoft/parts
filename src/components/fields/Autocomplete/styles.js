@@ -38,21 +38,23 @@ export default {
   },
   error: {
     color: '#ff3030',
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 10
   },
   wrapper: {
     flex: 1
   },
   menu: {
     zIndex: 10,
-    position: 'fixed',
+    position: 'absolute',
+    left: 0,
+    top: 43,
+    maxHeight: 200,
     borderBottomLeftRadius: '3px',
     borderBottomRightRadius: '3px',
     background: '#fff',
     overflow: 'auto',
-    maxHeight: '50%',
     border: '1px solid #eee',
-    boxSizing: 'border-box',
-    marginTop: -3
+    boxSizing: 'border-box'
   }
 }

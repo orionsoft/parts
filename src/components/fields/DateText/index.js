@@ -44,6 +44,9 @@ export default class DateTextField extends React.Component {
   }
 
   onChange (text) {
+    if (text === 'n') {
+      return this.props.onChange(new Date())
+    }
     if (this.replaceTexts(text, this.state.text)) return
     this.setState({text})
     if (text.length !== 10) return this.props.onChange(null)

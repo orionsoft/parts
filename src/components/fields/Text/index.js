@@ -19,14 +19,17 @@ export default class Text extends React.Component {
 
   render () {
     return (
-      <div style={styles.container}>
-        <input
-          style={styles.input}
-          type={this.props.fieldType}
-          value={this.props.value}
-          placeholder={this.props.placeholder}
-          onChange={event => this.props.onChange(event.target.value)}
-          {...this.props.passProps} />
+      <div>
+        <div style={styles.container}>
+          <input
+            ref='input'
+            style={styles.input}
+            type={this.props.fieldType}
+            value={this.props.value}
+            placeholder={this.props.placeholder}
+            onChange={event => this.props.onChange(event.target.value)}
+            {...this.props.passProps} />
+        </div>
         <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )

@@ -49,13 +49,15 @@ export default class NComponent extends React.Component {
 
   render () {
     return (
-      <div style={styles.container}>
-        <input
-          style={styles.input}
-          value={this.getValue()}
-          onChange={this.onChange}
-          onKeyDown={this.onKeyDown}
-          {...this.props.passProps} />
+      <div>
+        <div style={styles.container}>
+          <input
+            style={styles.input}
+            value={this.getValue()}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            {...this.props.passProps} />
+        </div>
         <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )

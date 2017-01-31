@@ -9,7 +9,8 @@ import debounce from 'lodash/debounce'
 
 const keyMap = {
   'alt': 18,
-  'a': 65
+  'a': 65,
+  'enter': 13
 }
 
 export default function (keys, functionName) {

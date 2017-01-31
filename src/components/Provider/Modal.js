@@ -2,6 +2,7 @@ import React from 'react'
 import OutlineModal from 'boron/OutlineModal'
 import autobind from 'autobind-decorator'
 import Button from '../Button'
+import withKeyboardEvent from '../../decorators/withKeyboardEvent'
 
 const styles = {
   modal: {
@@ -27,6 +28,7 @@ const styles = {
   }
 }
 
+@withKeyboardEvent('enter', 'confirm')
 export default class Modal extends React.Component {
 
   static propTypes = {
@@ -47,7 +49,7 @@ export default class Modal extends React.Component {
 
   @autobind
   showModal ({title, message, confirm, confirmText, cancelText, render}) {
-    this.setState({title, message, confirm, confirmText, cancelText, render})
+    this.setState({title, message, confirm, confirmText, cancelText, render, loading: false})
     this.refs.modal.show()
   }
 
@@ -58,8 +60,9 @@ export default class Modal extends React.Component {
 
   @autobind
   async confirm () {
+    this.setState({loading: true})
     const result = await this.state.confirm()
-    if (result === false) return
+    if (result === false) return this.setState({loading: false})
     this.hideModal()
   }
 
@@ -75,8 +78,8 @@ export default class Modal extends React.Component {
             {this.state.render ? this.state.render() : this.state.message}
           </div>
           <div style={styles.buttons}>
-            <Button style={styles.cancelButton} onClick={this.hideModal}>{this.state.cancelText}</Button>
-            <Button onClick={this.confirm} danger>{this.state.confirmText}</Button>
+            <Button loading={this.state.loading} style={styles.cancelButton} onClick={this.hideModal}>{this.state.cancelText}</Button>
+            <Button loading={this.state.loading} onClick={this.confirm} danger>{this.state.confirmText}</Button>
           </div>
         </OutlineModal>
       </div>

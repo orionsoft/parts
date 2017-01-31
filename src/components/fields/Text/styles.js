@@ -3,6 +3,7 @@ import reactCSS from 'reactcss'
 export default reactCSS({
   'default': {
     container: {
+      marginBottom: 10,
       display: 'flex',
       width: '100%',
       boxSizing: 'border-box',
@@ -32,7 +33,8 @@ export default reactCSS({
     },
     error: {
       color: '#ff3030',
-      marginTop: 10
+      marginTop: 10,
+      marginBottom: 10
     }
   }
 })

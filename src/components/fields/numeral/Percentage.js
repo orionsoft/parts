@@ -71,14 +71,16 @@ export default class PercentageComponent extends React.Component {
 
   render () {
     return (
-      <div style={styles.container}>
-        <input
-          style={styles.input}
-          value={this.state.value}
-          onChange={(event) => this.setState({ value: event.target.value })}
-          onBlur={this.onBlur}
-          onKeyDown={this.onKeyDown}
-          {...this.props.passProps} />
+      <div>
+        <div style={styles.container}>
+          <input
+            style={styles.input}
+            value={this.state.value}
+            onChange={(event) => this.setState({ value: event.target.value })}
+            onBlur={this.onBlur}
+            onKeyDown={this.onKeyDown}
+            {...this.props.passProps} />
+        </div>
         <div style={styles.error}>{this.props.errorMessage}</div>
       </div>
     )
