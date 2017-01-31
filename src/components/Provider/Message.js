@@ -37,6 +37,9 @@ export default class WithMessage extends React.Component {
           color: '#fff',
           borderTop: 'none',
           boxShadow: 'none'
+        },
+        error: {
+          backgroundColor: '#be0606'
         }
       },
       Dismiss: {
