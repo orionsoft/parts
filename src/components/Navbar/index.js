@@ -10,7 +10,7 @@ export default class Navbar extends React.Component {
   }
 
   renderLogo () {
-    return <Link to='/'><img src={this.props.logo} alt='Logo' className='os_navbar-logo' /></Link>
+    return <Link to='/'><img height={44} src={this.props.logo} alt='Logo' className='os_navbar-logo' /></Link>
   }
 
   render () {
