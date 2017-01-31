@@ -1149,6 +1149,16 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
+d3-color@~0.4.0:
+  version "0.4.2"
+  resolved "https://registry.npmjs.org/d3-color/-/d3-color-0.4.2.tgz#df013e789d9bfef0f8ea3986c92340cdf340d8a0"
+
+d3-interpolate@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-0.6.0.tgz#b79869c2b3b2801c255bec15aaa821dee74ffde2"
+  dependencies:
+    d3-color "~0.4.0"
+
 d@^0.1.1, d@~0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/d/-/d-0.1.1.tgz#da184c535d18d8ee7ba2aa229b914009fae11309"
@@ -1244,6 +1254,10 @@ dom-scroll-into-view@1.0.1:
 domkit@^0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/domkit/-/domkit-0.0.1.tgz#88399d586794efc1154fec6c22cfe50f19bd4dbb"
+
+dynamics.js@0.0.9:
+  version "0.0.9"
+  resolved "https://registry.npmjs.org/dynamics.js/-/dynamics.js-0.0.9.tgz#50ce463392479cfdbaaf56215dea6b37b8e92d7e"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -3027,6 +3041,15 @@ react-input-autosize@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/react-input-autosize/-/react-input-autosize-1.1.0.tgz#3fe1ac832387d8abab85f6051ceab1c9e5570853"
 
+react-ios-switch@^0.1.10:
+  version "0.1.10"
+  resolved "https://registry.npmjs.org/react-ios-switch/-/react-ios-switch-0.1.10.tgz#491598d51871f74ad369c868a3cd9d29c56f1b3c"
+  dependencies:
+    classnames "^2.2.0"
+    d3-interpolate "^0.6.0"
+    dynamics.js "0.0.9"
+    invariant "^2.2.0"
+
 react-notification-system@^0.2.11:
   version "0.2.11"
   resolved "https://registry.npmjs.org/react-notification-system/-/react-notification-system-0.2.11.tgz#c954ab7f3c355b34ca5f85d6b3fc4236070e7788"
@@ -3049,6 +3072,12 @@ react-select@^1.0.0-rc.2:
   dependencies:
     classnames "^2.2.4"
     react-input-autosize "^1.1.0"
+
+react-tooltip@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.npmjs.org/react-tooltip/-/react-tooltip-3.2.3.tgz#f78f823ccb5818a557a5ab1eb4306b16980c9c14"
+  dependencies:
+    classnames "^2.2.0"
 
 react@^15.4.2:
   version "15.4.2"
