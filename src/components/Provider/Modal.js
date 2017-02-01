@@ -49,17 +49,19 @@ export default class Modal extends React.Component {
 
   @autobind
   showModal ({title, message, confirm, confirmText, cancelText, render}) {
-    this.setState({title, message, confirm, confirmText, cancelText, render, loading: false})
+    this.setState({title, message, confirm, confirmText, cancelText, render, loading: false, open: true})
     this.refs.modal.show()
   }
 
   @autobind
   hideModal () {
     this.refs.modal.hide()
+    this.setState({open: false})
   }
 
   @autobind
   async confirm () {
+    if (!this.state.open) return
     this.setState({loading: true})
     const result = await this.state.confirm()
     if (result === false) return this.setState({loading: false})

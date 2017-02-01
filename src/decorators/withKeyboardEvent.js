@@ -72,7 +72,7 @@ export default function (keys, functionName) {
           const codes = this.getCombinationKeyCodes(combination)
           if (isEqual(codes, this.pressedKeys)) {
             this.refs.child[functionName](event)
-            return event.preventDefault()
+            // return event.preventDefault()
           }
         }
       }
