@@ -16,21 +16,47 @@ const fileChanged = function (filename) {
     // build.on('close', code => console.log('Build ready')) // ready
     build.on('error', error => console.log(error))
   } else if (filename.endsWith('.js')) {
-    const result = babel.transformFileSync('./src/' + filename).code
-    fs.writeFileSync('./lib/' + filename, result)
+    try {
+      const result = babel.transformFileSync('./src/' + filename).code
+      fs.writeFileSync('./lib/' + filename, result)
+    } catch (error) {
+      console.log(error.message.red + '\n')
+      if (error._babel) {
+        console.log(error.codeFrame)
+        console.log('')
+      } else {
+        console.log(error)
+      }
+    }
+  } else if (fs.lstatSync('./src/' + filename).isDirectory()) {
+    fs.mkdirSync('./lib/' + filename)
+    fs.readdirSync('./src/' + filename).forEach(file => {
+      fileChanged(filename + '/' + file)
+      console.log(filename.grey + '/' + file)
+    })
   }
 }
 
-fs.watch('./src', {recursive: true}, (eventType, filename) => {
+const deleteFile = function (filename) {
+  if (fs.lstatSync(filename).isDirectory()) {
+    fs.readdirSync(filename).forEach(file => deleteFile(filename + '/' + file))
+    fs.rmdirSync(filename)
+  } else {
+    fs.unlinkSync(filename)
+  }
+}
+
+const fileEvent = function (eventType, filename) {
   const existsInLib = fs.existsSync('./lib/' + filename)
   const existsInSrc = fs.existsSync('./src/' + filename)
-  const action = eventType === 'rename' ? existsInLib && !existsInSrc ? 'deleted' : 'created' : 'changed'
+  const action = eventType === 'rename' ? !existsInSrc ? 'deleted' : 'created' : 'changed'
 
-  if (action === 'deleted') {
-    fs.unlinkSync('./lib/' + filename)
+  console.log(filename.bold + ` ${action}`.grey)
+  if (action === 'deleted' && existsInLib) {
+    deleteFile('./lib/' + filename)
   } else {
     fileChanged(filename)
   }
+}
 
-  console.log(filename.bold + ` ${action}`.grey)
-})
+fs.watch('./src', {recursive: true}, fileEvent)

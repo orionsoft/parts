@@ -29,9 +29,19 @@ export default function (keys, functionName) {
         this.pressedKeys = []
       }
 
+      cancelKeyPress (keyCode) {
+        if (keyCode === 13) {
+          const activeElement = document.activeElement
+          if (!activeElement) return
+          const tag = activeElement.tagName
+          if (tag === 'TEXTAREA') return true
+        }
+      }
+
       @autobind
       onKeyDown (event) {
         const keyCode = event.keyCode
+        if (this.cancelKeyPress(keyCode)) return
         const oldPressedKeys = clone(this.pressedKeys)
         this.pressedKeys = union(this.pressedKeys, [keyCode])
         if (isEqual(this.pressedKeys, oldPressedKeys)) return
@@ -42,6 +52,7 @@ export default function (keys, functionName) {
       @autobind
       onKeyUp (event) {
         const keyCode = event.keyCode
+        if (this.cancelKeyPress(keyCode)) return
         const oldPressedKeys = clone(this.pressedKeys)
         this.pressedKeys = without(this.pressedKeys, keyCode)
         if (isEqual(this.pressedKeys, oldPressedKeys)) return
@@ -61,7 +72,7 @@ export default function (keys, functionName) {
           const codes = this.getCombinationKeyCodes(combination)
           if (isEqual(codes, this.pressedKeys)) {
             this.refs.child[functionName](event)
-            return event.preventDefault()
+            // return event.preventDefault()
           }
         }
       }

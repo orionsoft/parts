@@ -1151,11 +1151,11 @@ currently-unhandled@^0.4.1:
 
 d3-color@~0.4.0:
   version "0.4.2"
-  resolved "https://registry.yarnpkg.com/d3-color/-/d3-color-0.4.2.tgz#df013e789d9bfef0f8ea3986c92340cdf340d8a0"
+  resolved "https://registry.npmjs.org/d3-color/-/d3-color-0.4.2.tgz#df013e789d9bfef0f8ea3986c92340cdf340d8a0"
 
 d3-interpolate@^0.6.0:
   version "0.6.0"
-  resolved "https://registry.yarnpkg.com/d3-interpolate/-/d3-interpolate-0.6.0.tgz#b79869c2b3b2801c255bec15aaa821dee74ffde2"
+  resolved "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-0.6.0.tgz#b79869c2b3b2801c255bec15aaa821dee74ffde2"
   dependencies:
     d3-color "~0.4.0"
 
@@ -1265,7 +1265,7 @@ dot-object@^1.5.1:
 dynamics.js@0.0.9:
   version "0.0.9"
   resolved "https://registry.yarnpkg.com/dynamics.js/-/dynamics.js-0.0.9.tgz#50ce463392479cfdbaaf56215dea6b37b8e92d7e"
-
+  
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"

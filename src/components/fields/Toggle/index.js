@@ -12,7 +12,7 @@ export default class Toggle extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className='os_toggle_container'>
         <Switch
           checked={this.props.value}
           onChange={checked => this.props.onChange(checked)}

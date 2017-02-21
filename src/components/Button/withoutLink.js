@@ -1,10 +1,12 @@
 import React from 'react'
 import keys from 'lodash/keys'
 import omit from 'lodash/omit'
+import Tooltip from '../Tooltip'
 
 export default class Button extends React.Component {
 
   static propTypes = {
+    tooltip: React.PropTypes.string,
     to: React.PropTypes.string,
     linkButton: React.PropTypes.bool,
     label: React.PropTypes.any,
@@ -80,7 +82,7 @@ export default class Button extends React.Component {
     )
   }
 
-  render () {
+  renderMain () {
     if (this.props.linkButton || this.props.href || this.props.to) {
       return this.renderLinkButton()
     } else {
@@ -89,6 +91,14 @@ export default class Button extends React.Component {
           {this.renderButton()}
         </span>
       )
+    }
+  }
+
+  render () {
+    if (this.props.tooltip) {
+      return <Tooltip content={this.props.tooltip}>{this.renderMain()}</Tooltip>
+    } else {
+      return this.renderMain()
     }
   }
 
