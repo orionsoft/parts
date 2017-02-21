@@ -28,7 +28,7 @@ const defaultOptions = {
 
 export default function (requiredRoles, passedOptions) {
   const options = {...defaultOptions, ...passedOptions}
-  requiredRoles = isArray(requiredRoles) ? requiredRoles : [requiredRoles]
+  requiredRoles = !requiredRoles || isArray(requiredRoles) ? requiredRoles : [requiredRoles]
   return function (ComposedComponent) {
     return class WithRoles extends React.Component {
 
@@ -69,15 +69,16 @@ export default function (requiredRoles, passedOptions) {
 
       render () {
         const me = this.context.me
-        if (!me) {
-          return this.renderLogin()
-        }
+        if (!me) return this.renderLogin()
+        if (!requiredRoles) return <ComposedComponent {...this.props} />
+
         const roles = me.roles || []
         for (const role of requiredRoles) {
           if (includes(roles, role)) {
             return <ComposedComponent {...this.props} />
           }
         }
+
         return this.renderNotAllowed()
       }
     }
