@@ -2,6 +2,7 @@ import React from 'react'
 import {ArrayComponent} from 'simple-react-form'
 import Button from '../../Button'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
+import RemoveIcon from 'react-icons/lib/md/cancel'
 import without from 'lodash/without'
 
 // Sortable Elements
@@ -23,10 +24,11 @@ export default class Array extends ArrayComponent {
 
   static defaultProps = {
     ...ArrayComponent.defaultProps,
-    childrenClassName: `array array-1`
+    childrenClassName: `os-s-array os-s-array-1`
   }
 
   removeItem (index) {
+    console.log('removing item', index)
     const value = this.props.value || []
     var newArray = without(value, value[index])
     this.props.onChange(newArray)
@@ -46,10 +48,14 @@ export default class Array extends ArrayComponent {
   renderChildrenItem ({ index, children }) {
     return (
       <div className={this.props.childrenClassName} key={`${this.props.fieldName}.${index}`}>
-        {this.renderChildrenItemWithContext({index, children})}
-        <button type='button' onClick={() => this.removeItem(index)}>
-          {this.props.removeLabel}
-        </button>
+        <div className='os-array-item-content'>
+          {this.renderChildrenItemWithContext({index, children})}
+        </div>
+        <div className='os-array-item-remove'>
+          <Button danger onClick={() => this.removeItem(index)}>
+            <RemoveIcon />
+          </Button>
+        </div>
       </div>
     )
   }
@@ -65,7 +71,11 @@ export default class Array extends ArrayComponent {
       return this.renderChildrenItem({ index, children })
     })
     const onSortEnd = ({oldIndex, newIndex}) => this.props.onChange(arrayMove(value, oldIndex, newIndex))
-    return <SortableList items={items} onSortEnd={onSortEnd} />
+    return <SortableList
+      helperClass='os-s-array-grabbing'
+      distance={2}
+      items={items}
+      onSortEnd={onSortEnd} />
   }
 
   render () {
@@ -76,7 +86,7 @@ export default class Array extends ArrayComponent {
         <div className={this.props.parentClassName}>
           {this.renderChildren()}
         </div>
-        <div style={{ marginTop: 10 }}>
+        <div style={{ marginTop: 10, marginBottom: 10 }}>
           {this.renderAddButton()}
         </div>
       </div>

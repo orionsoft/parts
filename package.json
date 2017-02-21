@@ -1,6 +1,6 @@
 {
   "name": "orionsoft-parts",
-  "version": "1.2.25",
+  "version": "1.2.26",
   "main": "index.js",
   "repository": "http://github.com/orionsoft/parts",
   "author": "nicolaslopezj",
@@ -49,7 +49,7 @@
     "react-ios-switch": "^0.1.10",
     "react-notification-system": "^0.2.11",
     "react-sortable-hoc": "^0.5.0",
-    "simple-react-form": "^1.8.1"
+    "simple-react-form": "^1.8.1",
     "react-tooltip": "^3.2.3",
     "reactcss": "^1.1.1"
   }

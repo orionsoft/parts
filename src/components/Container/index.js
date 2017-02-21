@@ -12,6 +12,9 @@ const styles = {
   },
   small: {
     maxWidth: 600
+  },
+  medium: {
+    maxWidth: 900
   }
 }
 
