@@ -1255,10 +1255,17 @@ domkit@^0.0.1:
   version "0.0.1"
   resolved "https://registry.npmjs.org/domkit/-/domkit-0.0.1.tgz#88399d586794efc1154fec6c22cfe50f19bd4dbb"
 
+dot-object@^1.5.1:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/dot-object/-/dot-object-1.5.4.tgz#af2b8df2626b65020cd6729d46c331bc30d3b487"
+  dependencies:
+    commander "^2.9.0"
+    glob "^7.0.5"
+
 dynamics.js@0.0.9:
   version "0.0.9"
-  resolved "https://registry.npmjs.org/dynamics.js/-/dynamics.js-0.0.9.tgz#50ce463392479cfdbaaf56215dea6b37b8e92d7e"
-
+  resolved "https://registry.yarnpkg.com/dynamics.js/-/dynamics.js-0.0.9.tgz#50ce463392479cfdbaaf56215dea6b37b8e92d7e"
+  
 ecc-jsbn@~0.1.1:
   version "0.1.1"
   resolved "https://registry.npmjs.org/ecc-jsbn/-/ecc-jsbn-0.1.1.tgz#0fc73a9ed5f0d53c38193398523ef7e543777505"
@@ -2562,7 +2569,7 @@ lodash@^3.2.0:
   version "3.10.1"
   resolved "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.0.1, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.3.0:
+lodash@^4.0.0, lodash@^4.0.1, lodash@^4.12.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.3"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.3.tgz#557ed7d2a9438cac5fd5a43043ca60cb455e01f7"
 
@@ -3043,7 +3050,7 @@ react-input-autosize@^1.1.0:
 
 react-ios-switch@^0.1.10:
   version "0.1.10"
-  resolved "https://registry.npmjs.org/react-ios-switch/-/react-ios-switch-0.1.10.tgz#491598d51871f74ad369c868a3cd9d29c56f1b3c"
+  resolved "https://registry.yarnpkg.com/react-ios-switch/-/react-ios-switch-0.1.10.tgz#491598d51871f74ad369c868a3cd9d29c56f1b3c"
   dependencies:
     classnames "^2.2.0"
     d3-interpolate "^0.6.0"
@@ -3073,11 +3080,13 @@ react-select@^1.0.0-rc.2:
     classnames "^2.2.4"
     react-input-autosize "^1.1.0"
 
-react-tooltip@^3.2.3:
-  version "3.2.3"
-  resolved "https://registry.npmjs.org/react-tooltip/-/react-tooltip-3.2.3.tgz#f78f823ccb5818a557a5ab1eb4306b16980c9c14"
+react-sortable-hoc@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-sortable-hoc/-/react-sortable-hoc-0.5.0.tgz#f6f5405f3395117bfe8182010d1af61ea12054d9"
   dependencies:
-    classnames "^2.2.0"
+    babel-runtime "^6.11.6"
+    invariant "^2.2.1"
+    lodash "^4.12.0"
 
 react@^15.4.2:
   version "15.4.2"
@@ -3371,6 +3380,13 @@ shellwords@^0.1.0:
 signal-exit@^3.0.0:
   version "3.0.2"
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+simple-react-form@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/simple-react-form/-/simple-react-form-1.8.1.tgz#5ac767e5210e3538ebb7d05606faa119dcf6dbb4"
+  dependencies:
+    dot-object "^1.5.1"
+    lodash "^4.17.2"
 
 slash@^1.0.0:
   version "1.0.0"
