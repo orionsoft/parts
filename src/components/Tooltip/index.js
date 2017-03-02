@@ -13,7 +13,7 @@ export default class Tooltip extends React.Component {
 
   @autobind
   getContent () {
-    if (isString) {
+    if (isString(this.props.content)) {
       return this.props.content.split('\n').map((line, index) => <div key={index}>{line}</div>)
     }
     return this.props.content
