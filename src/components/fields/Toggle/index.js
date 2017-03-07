@@ -14,6 +14,7 @@ export default class Toggle extends React.Component {
     return (
       <div className='os_toggle_container'>
         <Switch
+          onColor='#0069ff'
           checked={this.props.value}
           onChange={checked => this.props.onChange(checked)}
           {...this.props.passProps} />
