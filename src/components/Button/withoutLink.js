@@ -87,7 +87,7 @@ export default class Button extends React.Component {
       return this.renderLinkButton()
     } else {
       return (
-        <span {...this.getChildProps()}>
+        <span className='os_button_container' {...this.getChildProps()}>
           {this.renderButton()}
         </span>
       )

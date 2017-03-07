@@ -1,0 +1,189 @@
+/* Copyright 2013-2015 etc Chris Tabor. See https://github.com/christabor/css-progress-wizard/blob/master/LICENSE for details. */
+
+// colors
+
+@incomplete: #aaa;
+@complete: #0069ff;
+@active: #0069ff;
+@hover: #5671d0;
+@step-danger: #d3140f;
+@step-warning: #edb10a;
+@step-info: #5b32d6;
+
+// sizing
+
+@bubble-size: 15px;
+@bubble-line-thickness: 5px;
+@border-thickness: 1px;
+@darken-amount: 30%;
+
+// misc
+@mobile-size: 400px;
+
+.bubble-style(@color) {
+    background-color: @color;
+    color: @color;
+    &:before,
+    &:after {
+        background-color: @color;
+    }
+}
+
+.os_wizard_container {
+  position: relative;
+  z-index: 10;
+  margin-top: 20px;
+}
+
+.os_wizard_content {
+  margin-top: 50px;
+}
+
+.progress-indicator {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1em;
+    > li {
+        flex: 1;
+        list-style: none;
+        text-align: center;
+        width: auto;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        text-overflow: ellipsis;
+        color: @incomplete;
+        display: block;
+    }
+    > li .bubble {
+        z-index: 2;
+        border-radius: 1000px;
+        width: @bubble-size;
+        height: @bubble-size;
+        background-color: @incomplete;
+        display: block;
+        margin: 0 auto 0.5em auto;
+    }
+
+    // line connectors
+
+    > li .bubble:before,
+    > li .bubble:after {
+        display: block;
+        position: absolute;
+        z-index: -1;
+        top: 4.5px;
+        width: 100%;
+        height: @bubble-line-thickness;
+        content: '';
+        background-color: #eee;
+    }
+    > li .bubble:before {
+        left: 0;
+    }
+    > li .bubble:after {
+        right: 50%;
+    }
+
+    > li:first-child .bubble:before,
+    > li:first-child .bubble:after {
+        width: 0%;
+        margin-left: 50%;
+    }
+
+    > li:last-child .bubble:before,
+    > li:last-child .bubble:after {
+        width: 50%;
+        margin-right: 50%;
+    }
+
+
+    // completed state
+
+    > li.completed {
+        color: @complete;
+        .bubble {
+            .bubble-style(@complete);
+        }
+    }
+
+    // current state
+
+    > li.active {
+        color: @active;
+        .bubble {
+            .bubble-style(@active);
+        }
+    }
+
+    // button states
+
+    > li a:hover .bubble {
+        .bubble-style(@hover);
+    }
+
+    // override states
+
+    > li.danger .bubble {
+        .bubble-style(@step-danger);
+    }
+    > li.warning .bubble {
+        .bubble-style(@step-warning);
+    }
+    > li.info .bubble {
+        .bubble-style(@step-info);
+    }
+
+    // stacked version
+
+    &.stacked {
+        display: block;
+        > li {
+            text-indent: -10px;
+            text-align: center;
+            display: block;
+        }
+        > li .bubble:before,
+        > li .bubble:after {
+            left: 50%;
+            margin-left: -@bubble-line-thickness / 2;
+            width: @bubble-line-thickness;
+            height: 100%;
+        }
+        .stacked-text {
+            position: relative;
+            z-index: 10;
+            top: 0;
+            margin-left: 60% !important;
+            width: 45% !important;
+            display: inline-block;
+            text-align: left;
+            line-height: 1.2em;
+        }
+        > li a {
+            border: none;
+        }
+    }
+    &.stacked.nocenter {
+        > li .bubble {
+            margin-left: 0;
+            margin-right: 0
+        }
+        > li .bubble:before,
+        > li .bubble:after {
+            left: @bubble-size / 2;
+        }
+        .stacked-text {
+            width: auto !important;
+            display: block;
+            margin-left: @bubble-size * 2 !important;
+        }
+    }
+}
+
+@media handheld, screen and (max-width: @mobile-size) {
+    .progress-indicator {
+        font-size: 80%;
+    }
+}

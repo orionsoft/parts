@@ -13,7 +13,10 @@ build.on('error', error => console.log(error))
 const fileChanged = function (filename) {
   if (filename.endsWith('.less')) {
     const build = spawn('yarn', ['run', 'build-styles'])
-    // build.on('close', code => console.log('Build ready')) // ready
+    setTimeout(() => {
+      const result = fs.readFileSync('./lib/styles.css')
+      fs.writeFileSync('./lib/styles.css', result + '\n')
+    }, 1000)
     build.on('error', error => console.log(error))
   } else if (filename.endsWith('.js')) {
     try {
