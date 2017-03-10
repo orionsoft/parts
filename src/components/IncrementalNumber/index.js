@@ -11,8 +11,8 @@ export default class IncrementalNumber extends React.Component {
 
   static defaultProps = {
     format: '0,0',
-    duration: 10000,
-    steps: 100
+    duration: 5000,
+    steps: 50
   }
 
   constructor (props) {
@@ -28,15 +28,27 @@ export default class IncrementalNumber extends React.Component {
     }
   }
 
-  startUpgrade ({from, to}) {
+  componentWillUnmount () {
+    this.clearTimeouts()
+  }
+
+  clearTimeouts () {
     this.timeouts.map(timeout => {
       clearTimeout(timeout)
     })
+  }
+
+  startUpgrade ({from, to}) {
+    this.clearTimeouts()
     const step = (to - from) / this.props.steps
     const timeStep = this.props.duration / this.props.steps
     for (let i = 0; i < this.props.steps; i++) {
       const timeout = setTimeout(() => {
         this.setState({number: from + (step * i)})
+        const index = this.timeouts.indexOf(timeout)
+        if (index > -1) {
+          this.timeouts.splice(index, 1)
+        }
       }, timeStep * i)
       this.timeouts.push(timeout)
     }
