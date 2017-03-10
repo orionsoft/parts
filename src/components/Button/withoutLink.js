@@ -2,6 +2,7 @@ import React from 'react'
 import keys from 'lodash/keys'
 import omit from 'lodash/omit'
 import Tooltip from '../Tooltip'
+import BounceLoading from '../BounceLoading'
 
 export default class Button extends React.Component {
 
@@ -59,7 +60,9 @@ export default class Button extends React.Component {
   }
 
   renderInner () {
-    if (this.props.label) {
+    if (this.props.loading) {
+      return <BounceLoading />
+    } if (this.props.label) {
       return this.props.label
     } else {
       return this.props.children
