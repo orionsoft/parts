@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './styles'
 
 export default class Text extends React.Component {
 
@@ -20,17 +19,17 @@ export default class Text extends React.Component {
   render () {
     return (
       <div>
-        <div style={styles.container}>
+        <div className='os-input-container'>
           <input
             ref='input'
-            style={styles.input}
+            className='os-input-text'
             type={this.props.fieldType}
             value={this.props.value}
             placeholder={this.props.placeholder}
             onChange={event => this.props.onChange(event.target.value)}
             {...this.props.passProps} />
         </div>
-        <div style={styles.error}>{this.props.errorMessage}</div>
+        <div className='os-input-error'>{this.props.errorMessage}</div>
       </div>
     )
   }

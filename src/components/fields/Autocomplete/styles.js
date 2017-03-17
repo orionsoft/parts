@@ -5,23 +5,24 @@ export default {
     display: 'flex',
     width: '100%',
     boxSizing: 'border-box',
-    fontSize: '20px',
+    fontSize: '16px',
     fontFamily: 'inherit',
     border: 'none',
     borderRadius: '5px',
-    backgroundColor: '#eee'
+    backgroundColor: '#fff'
   },
   input: {
     flex: 1,
     boxSizing: 'border-box',
-    fontSize: '20px',
+    fontSize: '16px',
     fontFamily: 'inherit',
-    border: 'none',
     borderRadius: '5px',
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
     padding: '10px',
     outline: 'none',
-    width: '100%'
+    width: '100%',
+    border: '1px solid #c2c2c2',
+    boxShadow: '0 0 0 1px rgba(220, 220, 220, 0.2)'
   },
   otherContainer: {
     position: 'absolute',
@@ -48,13 +49,14 @@ export default {
     zIndex: 10,
     position: 'absolute',
     left: 0,
-    top: 43,
+    top: 38,
     maxHeight: 200,
     borderBottomLeftRadius: '3px',
     borderBottomRightRadius: '3px',
     background: '#fff',
     overflow: 'auto',
-    border: '1px solid #eee',
+    border: '1px solid #c2c2c2',
+    boxShadow: '0 0 0 1px rgba(220, 220, 220, 0.2)',
     boxSizing: 'border-box'
   }
 }

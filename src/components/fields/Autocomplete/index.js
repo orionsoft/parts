@@ -79,7 +79,7 @@ export default class AutocompleteField extends React.Component {
             getItemValue={item => item}
             {...this.props.passProps} />
           <div style={{...styles.otherContainer, opacity: this.state.loading ? 1 : 0}}>
-            <Loading size={25} />
+            <Loading size={23} />
           </div>
         </div>
         <div style={styles.error}>{this.props.errorMessage}</div>

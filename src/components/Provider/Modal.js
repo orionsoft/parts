@@ -80,7 +80,7 @@ export default class Modal extends React.Component {
             {this.state.render ? this.state.render() : this.state.message}
           </div>
           <div style={styles.buttons}>
-            <Button loading={this.state.loading} style={styles.cancelButton} onClick={this.hideModal}>{this.state.cancelText}</Button>
+            <Button disabled={this.state.loading} style={styles.cancelButton} onClick={this.hideModal}>{this.state.cancelText}</Button>
             <Button loading={this.state.loading} onClick={this.confirm} danger>{this.state.confirmText}</Button>
           </div>
         </OutlineModal>

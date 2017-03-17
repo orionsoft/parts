@@ -8,10 +8,10 @@ import without from 'lodash/without'
 // Sortable Elements
 const SortableItem = SortableElement(({item}) => <div>{item}</div>)
 
-const SortableList = SortableContainer(({items}) => {
+const SortableList = SortableContainer(({items, draggable}) => {
   return (
     <div>
-      {items.map((item, index) => <SortableItem key={`item-${index}`} index={index} item={item} />)}
+      {items.map((item, index) => <SortableItem disabled={!draggable} key={`item-${index}`} index={index} item={item} />)}
     </div>
   )
 })
@@ -19,16 +19,17 @@ const SortableList = SortableContainer(({items}) => {
 export default class Array extends ArrayComponent {
   static propTypes = {
     ...ArrayComponent.propTypes,
-    childrenClassName: React.PropTypes.string
+    childrenClassName: React.PropTypes.string,
+    draggable: React.PropTypes.bool
   }
 
   static defaultProps = {
     ...ArrayComponent.defaultProps,
-    childrenClassName: `os-s-array os-s-array-1`
+    childrenClassName: `os-s-array os-s-array-1`,
+    draggable: true
   }
 
   removeItem (index) {
-    console.log('removing item', index)
     const value = this.props.value || []
     var newArray = without(value, value[index])
     this.props.onChange(newArray)
@@ -75,6 +76,7 @@ export default class Array extends ArrayComponent {
       helperClass='os-s-array-grabbing'
       distance={2}
       items={items}
+      draggable={this.props.draggable}
       onSortEnd={onSortEnd} />
   }
 

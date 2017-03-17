@@ -1,7 +1,6 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import isNumber from 'lodash/isNumber'
-import styles from '../Text/styles'
 const numeral = global.numeral
 if (!numeral) {
   throw new Error('Numeral is required in global variable')
@@ -72,16 +71,16 @@ export default class PercentageComponent extends React.Component {
   render () {
     return (
       <div>
-        <div style={styles.container}>
+        <div className='os-input-container'>
           <input
-            style={styles.input}
+            className='os-input-text'
             value={this.state.value}
             onChange={(event) => this.setState({ value: event.target.value })}
             onBlur={this.onBlur}
             onKeyDown={this.onKeyDown}
             {...this.props.passProps} />
         </div>
-        <div style={styles.error}>{this.props.errorMessage}</div>
+        <div className='os-input-error'>{this.props.errorMessage}</div>
       </div>
     )
   }

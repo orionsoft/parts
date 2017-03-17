@@ -8,7 +8,8 @@ export default class Tooltip extends React.Component {
 
   static propTypes = {
     children: React.PropTypes.node,
-    content: React.PropTypes.node
+    content: React.PropTypes.node,
+    place: React.PropTypes.string
   }
 
   @autobind
@@ -26,7 +27,7 @@ export default class Tooltip extends React.Component {
         <div data-tip='' data-for={id}>
           {this.props.children}
         </div>
-        <ReactTooltip id={id} effect='solid' getContent={this.getContent} />
+        <ReactTooltip id={id} place={this.props.place} effect='solid' getContent={this.getContent} />
       </div>
     )
   }
