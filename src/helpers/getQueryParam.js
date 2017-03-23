@@ -2,5 +2,8 @@
 
 export default function (name) {
   const params = new URL(window.location.href).searchParams
-  return params.get(name)
+  const value = params.get(name)
+  if (!value) return
+  const decoded = decodeURIComponent(value)
+  return decoded
 }
