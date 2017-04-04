@@ -15,7 +15,8 @@ import Loading from './Loading'
     }
   }
 }`, {
-  loading: null
+  loading: null,
+  networkErrorComponent: null
 })
 @withMutation(gql`mutation resendVerificationEmail ($email: String) {
   resendVerificationEmail (email: $email) {
@@ -32,7 +33,7 @@ export default class Layout extends React.Component {
   }
 
   render () {
-    if (this.props.data.networkStatus < 7) return <Loading />
+    if (this.props.data.networkStatus !== 7) return <Loading />
     return (
       <Provider me={this.props.me} resendVerificationEmail={this.props.resendVerificationEmail}>
         {this.props.children}
