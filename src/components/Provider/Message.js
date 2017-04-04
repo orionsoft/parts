@@ -21,7 +21,7 @@ export default class WithMessage extends React.Component {
   @autobind
   showMessage (message, passedOptions) {
     const options = {
-      message,
+      message: message.replace('GraphQL error: ', ''),
       level: 'info',
       ...passedOptions
     }
