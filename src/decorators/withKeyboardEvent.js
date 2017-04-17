@@ -6,12 +6,7 @@ import union from 'lodash/union'
 import clone from 'lodash/clone'
 import isEqual from 'lodash/isEqual'
 import debounce from 'lodash/debounce'
-
-const keyMap = {
-  'alt': 18,
-  'a': 65,
-  'enter': 13
-}
+import keyCodes from '../helpers/keyCodes'
 
 export default function (keys, functionName) {
   keys = isArray(keys) ? keys : [keys]
@@ -63,15 +58,21 @@ export default function (keys, functionName) {
       getCombinationKeyCodes (combination) {
         const parts = combination.split('+')
         return parts.map(key => {
-          return keyMap[key]
+          return keyCodes[key]
         })
+      }
+
+      getChild (from) {
+        from = from || this
+        if (!from.refs.keyboardEventChild) return from
+        return this.getChild(from.refs.keyboardEventChild)
       }
 
       checkKeys (event) {
         for (const combination of keys) {
           const codes = this.getCombinationKeyCodes(combination)
           if (isEqual(codes, this.pressedKeys)) {
-            this.refs.child[functionName](event)
+            this.getChild()[functionName](event)
             // return event.preventDefault()
           }
         }
@@ -88,7 +89,7 @@ export default function (keys, functionName) {
       }
 
       render () {
-        return <Child ref='child' {...this.props} />
+        return <Child ref='keyboardEventChild' {...this.props} />
       }
 
     }
