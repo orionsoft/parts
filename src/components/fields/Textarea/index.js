@@ -1,5 +1,6 @@
 import React from 'react'
-import styles from './styles'
+import autobind from 'autobind-decorator'
+import getHeight from './getHeight'
 
 export default class Textarea extends React.Component {
 
@@ -9,26 +10,46 @@ export default class Textarea extends React.Component {
     fieldType: React.PropTypes.string,
     passProps: React.PropTypes.object,
     placeholder: React.PropTypes.node,
-    errorMessage: React.PropTypes.node
+    errorMessage: React.PropTypes.node,
+    autoResize: React.PropTypes.bool
   }
 
   static defaultProps = {
-    value: ''
+    autoResize: true
+  }
+
+  state = {height: 41}
+
+  @autobind
+  autoResize (event) {
+    if (!this.props.autoResize) return
+    const {height} = getHeight(this.refs.input)
+    if (this.state.height !== height) {
+      this.setState({height})
+    }
+  }
+
+  @autobind
+  onChange (event) {
+    this.props.onChange(event.target.value)
+    this.autoResize(event)
   }
 
   render () {
     return (
       <div>
-        <div style={styles.container}>
+        <div className='os-input-container'>
           <textarea
             ref='input'
-            style={styles.input}
+            className='os-input-text'
+            rows={1}
+            style={{height: this.state.height}}
             value={this.props.value}
             placeholder={this.props.placeholder}
-            onChange={event => this.props.onChange(event.target.value)}
+            onChange={this.onChange}
             {...this.props.passProps} />
         </div>
-        <div style={styles.error}>{this.props.errorMessage}</div>
+        <div className='os-input-error'>{this.props.errorMessage}</div>
       </div>
     )
   }
