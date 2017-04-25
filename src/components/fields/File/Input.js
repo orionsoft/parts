@@ -5,13 +5,14 @@ import Loading from '../../Loading'
 const styles = {
   inputContainer: {
     overflow: 'hidden',
+    cursor: 'pointer',
     position: 'relative',
-    backgroundColor: '#eee',
     borderRadius: 5,
-    padding: 10,
-    fontSize: 20,
+    padding: 8,
+    fontSize: 18,
     color: '#a9a9a9',
-    cursor: 'pointer'
+    backgroundColor: '#fff',
+    border: '1px solid #c2c2c2'
   },
   input: {
     cursor: 'pointer',
@@ -79,14 +80,15 @@ export default class Component extends React.Component {
       const style = this.state.uploading ? {color: '#a9a9a9'} : {color: '#000'}
       return (
         <div style={{...style, ...styles.fileNameContainer}}>
-          <div style={styles.fileName}>
+          <div>
             {this.state.fileName}
           </div>
           <div style={styles.loading}>
             <Loading
               size={25}
               mode='determinate'
-              value={this.state.progress * 100} />
+              color='#0069ff'
+              value={this.state.progress * 0.95 * 100 + 5} />
           </div>
         </div>
       )

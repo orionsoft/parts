@@ -1,6 +1,4 @@
 import React from 'react'
-import styles from '../Text/styles'
-import SetTodayIcon from 'react-icons/lib/md/today'
 import autobind from 'autobind-decorator'
 const moment = global.moment
 if (!moment) {
@@ -62,26 +60,18 @@ export default class DateTextField extends React.Component {
     }
   }
 
-  renderSetToday () {
-    if (this.props.value && (new Date(this.props.value)).toDateString() === (new Date()).toDateString()) return
-    return <SetTodayIcon style={{cursor: 'pointer'}} size={25} onClick={this.setToday} />
-  }
-
   render () {
     return (
       <div>
-        <div style={styles.container}>
+        <div className='os-input-container'>
           <input
-            style={styles.input}
+            className='os-input-text'
             value={this.getValue()}
             onChange={(event) => this.onChange(event.target.value)}
             onBlur={this.onBlur}
             {...this.props.passProps} />
-          <div style={styles.otherContainer}>
-            {this.renderSetToday()}
-          </div>
         </div>
-        <div style={styles.error}>{this.props.errorMessage}</div>
+        <div className='os-input-error'>{this.props.errorMessage}</div>
       </div>
     )
   }

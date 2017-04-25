@@ -2,15 +2,17 @@ import React from 'react'
 import DeleteIcon from 'react-icons/lib/md/delete'
 import ViewIcon from 'react-icons/lib/md/open-in-browser'
 import autobind from 'autobind-decorator'
+import cleanFileURL from './cleanFileURL'
 
 const styles = {
   container: {
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
     borderRadius: 5,
-    padding: 9,
-    fontSize: 20,
+    padding: 7,
+    fontSize: 18,
     color: '#000',
-    display: 'flex'
+    display: 'flex',
+    border: '1px solid #c2c2c2'
   },
   name: {
     overflow: 'hidden',
@@ -34,12 +36,6 @@ export default class Show extends React.Component {
     onChange: React.PropTypes.func
   }
 
-  getName () {
-    const parts = this.props.value.url.split('/')
-    const last = parts[parts.length - 1]
-    return last
-  }
-
   @autobind
   delete () {
     this.props.onChange(null)
@@ -54,7 +50,7 @@ export default class Show extends React.Component {
     return (
       <div style={styles.container}>
         <div style={styles.name}>
-          {this.getName()}
+          {cleanFileURL(this.props.value.url)}
         </div>
         <div style={styles.buttons}>
           <ViewIcon style={styles.icon} size={25} onClick={this.open} />
