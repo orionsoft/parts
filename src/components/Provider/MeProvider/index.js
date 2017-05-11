@@ -29,11 +29,11 @@ export default class Layout extends React.Component {
     children: React.PropTypes.node,
     me: React.PropTypes.object,
     resendVerificationEmail: React.PropTypes.func,
-    data: React.PropTypes.object
+    _data: React.PropTypes.object
   }
 
   render () {
-    if (this.props.data.networkStatus !== 7) return <Loading />
+    if (this.props._data.networkStatus !== 7) return <Loading />
     return (
       <Provider me={this.props.me} resendVerificationEmail={this.props.resendVerificationEmail}>
         {this.props.children}

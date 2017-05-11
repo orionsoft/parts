@@ -3,7 +3,7 @@ import {AsyncCreatable, Creatable} from 'react-select'
 import autobind from 'autobind-decorator'
 import styles from '../Text/styles'
 
-export default class Text extends React.Component {
+export default class Select extends React.Component {
 
   static propTypes = {
     fieldName: React.PropTypes.string,
