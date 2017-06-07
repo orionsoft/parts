@@ -24,7 +24,6 @@ import Loading from './Loading'
   }
 }`)
 export default class Layout extends React.Component {
-
   static propTypes = {
     children: React.PropTypes.node,
     me: React.PropTypes.object,
@@ -40,5 +39,4 @@ export default class Layout extends React.Component {
       </Provider>
     )
   }
-
 }
