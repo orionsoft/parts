@@ -4,7 +4,6 @@ import Modal from './Modal'
 import MeProvider from './MeProvider'
 
 export default class OrionsoftProvider extends React.Component {
-
   static propTypes = {
     children: React.PropTypes.node,
     meProvider: React.PropTypes.bool
@@ -32,5 +31,4 @@ export default class OrionsoftProvider extends React.Component {
       </Message>
     )
   }
-
 }
