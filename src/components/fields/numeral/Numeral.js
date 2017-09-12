@@ -7,7 +7,6 @@ if (!numeral) {
 }
 
 export default class NComponent extends React.Component {
-
   static propTypes = {
     onChange: React.PropTypes.func,
     value: React.PropTypes.any,
@@ -18,46 +17,82 @@ export default class NComponent extends React.Component {
     passProps: React.PropTypes.object
   }
 
-  unformatValue (label) {
+  state = {}
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.value !== this.props.value) {
+      if (this.props.value) {
+        const label = this.formatValue(this.props.value)
+        this.setState({label, value: this.props.value})
+      } else {
+        this.setState({label: '', value: this.props.value})
+      }
+    }
+  }
+
+  unformatValue(label) {
     return label === '' ? undefined : numeral._.stringToNumber(label)
   }
 
-  formatValue (real) {
+  formatValue(real) {
     return isNumber(real) ? numeral(real).format('$0,0[.]00') : ''
   }
 
   @autobind
-  onChange (event) {
-    const value = event.target.value
-    const real = this.unformatValue(value)
-    this.props.onChange(real)
+  onChange(event) {
+    const label = event.target.value
+    if (!label) {
+      this.setState({label: ''})
+      this.props.onChange(null)
+      return
+    }
+    const value = this.unformatValue(label)
+    if (/([.,][0-9]*0|[.,])$/.test(label)) {
+      this.setState({label, value})
+    } else {
+      const formatted = this.formatValue(event.target.value)
+      this.setState({label: formatted, value})
+    }
+    this.props.onChange(value)
   }
 
-  getValue () {
-    return this.formatValue(this.props.value)
+  getValue() {
+    return this.state.label
+    //  return this.formatValue(this.props.value)
   }
 
   @autobind
-  onKeyDown (event) {
+  onBlur(event) {
+    if (!event.target.value) return
+    const real = this.formatValue(event.target.value)
+    this.setState({label: real})
+  }
+
+  @autobind
+  onKeyDown(event) {
     if (event.keyCode === 8) {
       if (String(this.props.value).length <= 1 || this.props.value === 0) {
+        this.setState({label: ''})
         this.props.onChange(null)
       }
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <div className='os-input-container'>
+        <div className="os-input-container">
           <input
-            className='os-input-text'
+            className="os-input-text"
+            ref="input"
             value={this.getValue()}
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
-            {...this.props.passProps} />
+            onBlur={this.onBlur}
+            {...this.props.passProps}
+          />
         </div>
-        <div className='os-input-error'>{this.props.errorMessage}</div>
+        <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
   }
