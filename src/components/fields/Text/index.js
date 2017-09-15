@@ -8,7 +8,8 @@ export default class Text extends React.Component {
     fieldType: React.PropTypes.string,
     passProps: React.PropTypes.object,
     placeholder: React.PropTypes.node,
-    errorMessage: React.PropTypes.node
+    errorMessage: React.PropTypes.node,
+    disabled: React.PropTypes.boolean
   }
 
   static defaultProps = {
@@ -27,6 +28,7 @@ export default class Text extends React.Component {
             value={this.props.value}
             placeholder={this.props.placeholder}
             onChange={event => this.props.onChange(event.target.value)}
+            disabled={this.props.disabled}
             {...this.props.passProps} />
         </div>
         <div className='os-input-error'>{this.props.errorMessage}</div>
