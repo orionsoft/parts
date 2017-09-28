@@ -2,11 +2,12 @@ import React from 'react'
 import Container from '../Container'
 import {Link} from 'react-router'
 import Margin from './Margin'
+import PropTypes from 'prop-types'
 
 export default class Navbar extends React.Component {
 
   static propTypes = {
-    logo: React.PropTypes.string
+    logo: PropTypes.string
   }
 
   renderLogo () {

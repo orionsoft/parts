@@ -4,16 +4,17 @@ import Autocomplete from 'react-autocomplete'
 import autobind from 'autobind-decorator'
 import debounce from 'lodash/debounce'
 import Loading from '../../Loading'
+import PropTypes from 'prop-types'
 
 export default class AutocompleteField extends React.Component {
 
   static propTypes = {
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.string,
-    passProps: React.PropTypes.object,
-    placeholder: React.PropTypes.node,
-    errorMessage: React.PropTypes.node,
-    getItems: React.PropTypes.func.isRequired
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+    passProps: PropTypes.object,
+    placeholder: PropTypes.node,
+    errorMessage: PropTypes.node,
+    getItems: PropTypes.func.isRequired
   }
 
   state = {items: [], loading: false}

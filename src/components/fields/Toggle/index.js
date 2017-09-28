@@ -1,13 +1,14 @@
 import React from 'react'
 import Switch from 'react-ios-switch'
+import PropTypes from 'prop-types'
 
 export default class Toggle extends React.Component {
 
   static propTypes = {
-    value: React.PropTypes.bool,
-    onChange: React.PropTypes.func,
-    passProps: React.PropTypes.object,
-    label: React.PropTypes.node
+    value: PropTypes.bool,
+    onChange: PropTypes.func,
+    passProps: PropTypes.object,
+    label: PropTypes.node
   }
 
   render () {

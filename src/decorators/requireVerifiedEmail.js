@@ -1,5 +1,6 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
+import PropTypes from 'prop-types'
 
 const styles = {
   container: {
@@ -43,8 +44,8 @@ export default function (ComposedComponent) {
   class WithRoles extends React.Component {
 
     static contextTypes = {
-      me: React.PropTypes.object,
-      resendVerificationEmail: React.PropTypes.func
+      me: PropTypes.object,
+      resendVerificationEmail: PropTypes.func
     }
 
     state = {}

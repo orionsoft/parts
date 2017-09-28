@@ -1,17 +1,18 @@
 import React from 'react'
 import Tooltip from '../Tooltip'
 import autobind from 'autobind-decorator'
+import PropTypes from 'prop-types'
 
 export default class IconButton extends React.Component {
 
   static propTypes = {
-    icon: React.PropTypes.func,
-    size: React.PropTypes.number,
-    onPress: React.PropTypes.func,
-    style: React.PropTypes.object,
-    tooltip: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    loading: React.PropTypes.bool
+    icon: PropTypes.func,
+    size: PropTypes.number,
+    onPress: PropTypes.func,
+    style: PropTypes.object,
+    tooltip: PropTypes.string,
+    disabled: PropTypes.bool,
+    loading: PropTypes.bool
   }
 
   static defaultProps = {

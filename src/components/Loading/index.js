@@ -1,23 +1,19 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import autoPrefix from './autoPrefix'
 import transitions from './transitions'
+import PropTypes from 'prop-types'
 
-function getRelativeValue (value, min, max) {
+function getRelativeValue(value, min, max) {
   const clampedValue = Math.min(Math.max(min, value), max)
   return clampedValue / (max - min)
 }
 
-function getArcLength (fraction, props) {
+function getArcLength(fraction, props) {
   return fraction * Math.PI * (props.size - props.thickness)
 }
 
-function getStyles (props, context) {
-  const {
-    max,
-    min,
-    size,
-    value
-  } = props
+function getStyles(props, context) {
+  const {max, min, size, value} = props
 
   const styles = {
     root: {
@@ -105,17 +101,17 @@ class CircularProgress extends Component {
     thickness: 2
   }
 
-  componentDidMount () {
+  componentDidMount() {
     // this.scalePath(this.refs.path)
     this.rotateWrapper(this.refs.wrapper)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     // clearTimeout(this.scalePathTimer)
     clearTimeout(this.rotateWrapperTimer)
   }
 
-  scalePath (path, step = 0) {
+  scalePath(path, step = 0) {
     if (this.props.mode !== 'indeterminate') return
 
     step %= 3
@@ -125,11 +121,17 @@ class CircularProgress extends Component {
       path.style.strokeDashoffset = 0
       path.style.transitionDuration = '0ms'
     } else if (step === 1) {
-      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(1, this.props)}`
+      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(
+        1,
+        this.props
+      )}`
       path.style.strokeDashoffset = getArcLength(-0.3, this.props)
       path.style.transitionDuration = '750ms'
     } else {
-      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(1, this.props)}`
+      path.style.strokeDasharray = `${getArcLength(0.7, this.props)}, ${getArcLength(
+        1,
+        this.props
+      )}`
       path.style.strokeDashoffset = getArcLength(-1, this.props)
       path.style.transitionDuration = '850ms'
     }
@@ -137,7 +139,7 @@ class CircularProgress extends Component {
     this.scalePathTimer = setTimeout(() => this.scalePath(path, step + 1), step ? 750 : 250)
   }
 
-  rotateWrapper (wrapper) {
+  rotateWrapper(wrapper) {
     if (this.props.mode !== 'indeterminate') return
 
     autoPrefix.set(wrapper.style, 'transform', 'rotate(0deg)')
@@ -152,33 +154,24 @@ class CircularProgress extends Component {
     this.rotateWrapperTimer = setTimeout(() => this.rotateWrapper(wrapper), 5025)
   }
 
-  render () {
-    const {
-      style,
-      innerStyle,
-      size,
-      thickness,
-      ...other
-    } = this.props
+  render() {
+    const {style, innerStyle, size, thickness, ...other} = this.props
 
     const styles = getStyles(this.props, this.context)
 
     return (
       <div {...other} style={Object.assign(styles.root, style)}>
-        <div ref='wrapper' style={Object.assign(styles.wrapper, innerStyle)}>
-          <svg
-            viewBox={`0 0 ${size} ${size}`}
-            style={styles.svg}
-          >
+        <div ref="wrapper" style={Object.assign(styles.wrapper, innerStyle)}>
+          <svg viewBox={`0 0 ${size} ${size}`} style={styles.svg}>
             <circle
-              ref='path'
+              ref="path"
               style={styles.path}
               cx={size / 2}
               cy={size / 2}
               r={(size - thickness) / 2}
-              fill='none'
+              fill="none"
               strokeWidth={thickness}
-              strokeMiterlimit='20'
+              strokeMiterlimit="20"
             />
           </svg>
         </div>

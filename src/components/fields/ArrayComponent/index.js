@@ -4,6 +4,7 @@ import Button from '../../Button'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 import RemoveIcon from 'react-icons/lib/md/cancel'
 import without from 'lodash/without'
+import PropTypes from 'prop-types'
 
 // Sortable Elements
 const SortableItem = SortableElement(({item}) => <div>{item}</div>)
@@ -19,8 +20,8 @@ const SortableList = SortableContainer(({items, draggable}) => {
 export default class Array extends ArrayComponent {
   static propTypes = {
     ...ArrayComponent.propTypes,
-    childrenClassName: React.PropTypes.string,
-    draggable: React.PropTypes.bool
+    childrenClassName: PropTypes.string,
+    draggable: PropTypes.bool
   }
 
   static defaultProps = {

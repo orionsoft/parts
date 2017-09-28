@@ -3,6 +3,7 @@ import DeleteIcon from 'react-icons/lib/md/delete'
 import ViewIcon from 'react-icons/lib/md/open-in-browser'
 import autobind from 'autobind-decorator'
 import cleanFileURL from './cleanFileURL'
+import PropTypes from 'prop-types'
 
 const styles = {
   container: {
@@ -32,8 +33,8 @@ const styles = {
 export default class Show extends React.Component {
 
   static propTypes = {
-    value: React.PropTypes.object,
-    onChange: React.PropTypes.func
+    value: PropTypes.object,
+    onChange: PropTypes.func
   }
 
   @autobind

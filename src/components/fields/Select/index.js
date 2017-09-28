@@ -2,20 +2,21 @@ import React from 'react'
 import {AsyncCreatable, Creatable} from 'react-select'
 import autobind from 'autobind-decorator'
 import styles from '../Text/styles'
+import PropTypes from 'prop-types'
 
 export default class Select extends React.Component {
 
   static propTypes = {
-    fieldName: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.any,
-    passProps: React.PropTypes.object,
-    multi: React.PropTypes.bool,
-    options: React.PropTypes.array,
-    errorMessage: React.PropTypes.node,
-    loadOptions: React.PropTypes.func,
-    isValidNewOption: React.PropTypes.func,
-    filterOption: React.PropTypes.func
+    fieldName: PropTypes.string,
+    onChange: PropTypes.func,
+    value: PropTypes.any,
+    passProps: PropTypes.object,
+    multi: PropTypes.bool,
+    options: PropTypes.array,
+    errorMessage: PropTypes.node,
+    loadOptions: PropTypes.func,
+    isValidNewOption: PropTypes.func,
+    filterOption: PropTypes.func
   }
 
   static defaultProps = {

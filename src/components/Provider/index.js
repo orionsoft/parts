@@ -2,11 +2,12 @@ import React from 'react'
 import Message from './Message'
 import Modal from './Modal'
 import MeProvider from './MeProvider'
+import PropTypes from 'prop-types'
 
 export default class OrionsoftProvider extends React.Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    meProvider: React.PropTypes.bool
+    children: PropTypes.node,
+    meProvider: PropTypes.bool
   }
 
   static defaultProps = {

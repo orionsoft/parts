@@ -1,12 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class IncrementalNumber extends React.Component {
 
   static propTypes = {
-    number: React.PropTypes.number,
-    format: React.PropTypes.string,
-    duration: React.PropTypes.number,
-    steps: React.PropTypes.number
+    number: PropTypes.number,
+    format: PropTypes.string,
+    duration: PropTypes.number,
+    steps: PropTypes.number
   }
 
   static defaultProps = {

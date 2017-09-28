@@ -1,15 +1,16 @@
 import React from 'react'
 import NotificationSystem from 'react-notification-system'
 import autobind from 'autobind-decorator'
+import PropTypes from 'prop-types'
 
 export default class WithMessage extends React.Component {
 
   static propTypes = {
-    children: React.PropTypes.node
+    children: PropTypes.node
   }
 
   static childContextTypes = {
-    showMessage: React.PropTypes.func
+    showMessage: PropTypes.func
   }
 
   getChildContext () {

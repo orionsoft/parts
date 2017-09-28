@@ -3,22 +3,23 @@ import keys from 'lodash/keys'
 import omit from 'lodash/omit'
 import Tooltip from '../Tooltip'
 import BounceLoading from '../BounceLoading'
+import PropTypes from 'prop-types'
 
 export default class Button extends React.Component {
 
   static propTypes = {
-    tooltip: React.PropTypes.string,
-    to: React.PropTypes.string,
-    linkButton: React.PropTypes.bool,
-    label: React.PropTypes.any,
-    children: React.PropTypes.any,
-    primary: React.PropTypes.bool,
-    danger: React.PropTypes.bool,
-    big: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    disabled: React.PropTypes.bool,
-    loading: React.PropTypes.bool,
-    fullWidth: React.PropTypes.bool
+    tooltip: PropTypes.string,
+    to: PropTypes.string,
+    linkButton: PropTypes.bool,
+    label: PropTypes.any,
+    children: PropTypes.any,
+    primary: PropTypes.bool,
+    danger: PropTypes.bool,
+    big: PropTypes.bool,
+    style: PropTypes.object,
+    disabled: PropTypes.bool,
+    loading: PropTypes.bool,
+    fullWidth: PropTypes.bool
   }
 
   static defaultProps = {

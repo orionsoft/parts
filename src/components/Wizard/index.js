@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class Wizard extends React.Component {
 
   static propTypes = {
-    step: React.PropTypes.number,
-    steps: React.PropTypes.array,
-    children: React.PropTypes.node
+    step: PropTypes.number,
+    steps: PropTypes.array,
+    children: PropTypes.node
   }
 
   static defaultProps = {

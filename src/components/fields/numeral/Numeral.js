@@ -1,6 +1,8 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import isNumber from 'lodash/isNumber'
+import PropTypes from 'prop-types'
+
 const numeral = global.numeral
 if (!numeral) {
   throw new Error('Numeral is required in global variable')
@@ -8,13 +10,13 @@ if (!numeral) {
 
 export default class NComponent extends React.Component {
   static propTypes = {
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.any,
-    useHint: React.PropTypes.bool,
-    label: React.PropTypes.any,
-    errorMessage: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    passProps: React.PropTypes.object
+    onChange: PropTypes.func,
+    value: PropTypes.any,
+    useHint: PropTypes.bool,
+    label: PropTypes.any,
+    errorMessage: PropTypes.string,
+    disabled: PropTypes.bool,
+    passProps: PropTypes.object
   }
 
   state = {}

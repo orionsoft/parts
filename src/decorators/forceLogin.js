@@ -1,11 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function (ComposedComponent) {
   return class WithRoles extends React.Component {
 
     static contextTypes = {
-      me: React.PropTypes.object,
-      router: React.PropTypes.object
+      me: PropTypes.object,
+      router: PropTypes.object
     }
 
     redirect () {

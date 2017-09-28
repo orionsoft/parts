@@ -1,15 +1,16 @@
 import React from 'react'
 import {Link, withRouter} from 'react-router'
+import PropTypes from 'prop-types'
 
 @withRouter
 export default class Tabs extends React.Component {
 
   static propTypes = {
-    items: React.PropTypes.arrayOf(React.PropTypes.shape({
-      title: React.PropTypes.node.isRequired,
-      path: React.PropTypes.string.isRequired
+    items: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.node.isRequired,
+      path: PropTypes.string.isRequired
     })),
-    router: React.PropTypes.object
+    router: PropTypes.object
   }
 
   renderTabs () {

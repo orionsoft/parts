@@ -3,13 +3,14 @@ import ReactTooltip from 'react-tooltip'
 import isString from 'lodash/isString'
 import autobind from 'autobind-decorator'
 import uniqueId from 'lodash/uniqueId'
+import PropTypes from 'prop-types'
 
 export default class Tooltip extends React.Component {
 
   static propTypes = {
-    children: React.PropTypes.node,
-    content: React.PropTypes.node,
-    place: React.PropTypes.string
+    children: PropTypes.node,
+    content: PropTypes.node,
+    place: PropTypes.string
   }
 
   @autobind

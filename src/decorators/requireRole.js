@@ -2,6 +2,7 @@ import React from 'react'
 import includes from 'lodash/includes'
 import Button from '../components/Button'
 import isArray from 'lodash/isArray'
+import PropTypes from 'prop-types'
 
 const styles = {
   container: {
@@ -33,7 +34,7 @@ export default function (requiredRoles, passedOptions) {
     return class WithRoles extends React.Component {
 
       static contextTypes = {
-        me: React.PropTypes.object
+        me: PropTypes.object
       }
 
       renderLogin () {

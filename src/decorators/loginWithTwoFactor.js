@@ -3,6 +3,7 @@ import withMutation from 'react-apollo-decorators/lib/withMutation'
 import gql from 'graphql-tag'
 import autobind from 'autobind-decorator'
 import hashPassword from '../helpers/hashPassword'
+import PropTypes from 'prop-types'
 
 export default function (ComposedComponent) {
   @withMutation(gql`mutation login ($email: String, $password: HashedPassword, $code: String) {
@@ -15,7 +16,7 @@ export default function (ComposedComponent) {
   class LoginWithTwoFactor extends React.Component {
 
     static propTypes = {
-      login: React.PropTypes.func
+      login: PropTypes.func
     }
 
     @autobind

@@ -1,17 +1,18 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import getHeight from './getHeight'
+import PropTypes from 'prop-types'
 
 export default class Textarea extends React.Component {
 
   static propTypes = {
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.string,
-    fieldType: React.PropTypes.string,
-    passProps: React.PropTypes.object,
-    placeholder: React.PropTypes.node,
-    errorMessage: React.PropTypes.node,
-    autoResize: React.PropTypes.bool
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+    fieldType: PropTypes.string,
+    passProps: PropTypes.object,
+    placeholder: PropTypes.node,
+    errorMessage: PropTypes.node,
+    autoResize: PropTypes.bool
   }
 
   static defaultProps = {

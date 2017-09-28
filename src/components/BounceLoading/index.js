@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class BounceLoading extends React.Component {
 
   static propTypes = {
-    size: React.PropTypes.number,
-    color: React.PropTypes.string
+    size: PropTypes.number,
+    color: PropTypes.string
   }
 
   static defaultProps = {

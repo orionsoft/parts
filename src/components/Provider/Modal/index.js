@@ -1,12 +1,12 @@
 import React from 'react'
-import OutlineModal from 'boron/OutlineModal'
+import OutlineModal from './OutlineModal'
 import autobind from 'autobind-decorator'
-import Button from '../Button'
-import withKeyboardEvent from '../../decorators/withKeyboardEvent'
+import Button from '../../Button'
+import withKeyboardEvent from '../../../decorators/withKeyboardEvent'
+import PropTypes from 'prop-types'
 
 const styles = {
-  modal: {
-  },
+  modal: {},
   content: {
     outline: 'none',
     backgroundColor: '#fff',
@@ -30,16 +30,15 @@ const styles = {
 
 @withKeyboardEvent('enter', 'confirm')
 export default class Modal extends React.Component {
-
   static propTypes = {
-    children: React.PropTypes.node
+    children: PropTypes.node
   }
 
   static childContextTypes = {
-    showModal: React.PropTypes.func
+    showModal: PropTypes.func
   }
 
-  getChildContext () {
+  getChildContext() {
     return {
       showModal: this.showModal
     }
@@ -48,19 +47,28 @@ export default class Modal extends React.Component {
   state = {}
 
   @autobind
-  showModal ({title, message, confirm, confirmText, cancelText, render}) {
-    this.setState({title, message, confirm, confirmText, cancelText, render, loading: false, open: true})
+  showModal({title, message, confirm, confirmText, cancelText, render}) {
+    this.setState({
+      title,
+      message,
+      confirm,
+      confirmText,
+      cancelText,
+      render,
+      loading: false,
+      open: true
+    })
     this.refs.modal.show()
   }
 
   @autobind
-  hideModal () {
+  hideModal() {
     this.refs.modal.hide()
     this.setState({open: false})
   }
 
   @autobind
-  async confirm () {
+  async confirm() {
     if (!this.state.open) return
     this.setState({loading: true})
     const result = await this.state.confirm()
@@ -68,24 +76,28 @@ export default class Modal extends React.Component {
     this.hideModal()
   }
 
-  render () {
+  render() {
     return (
       <div>
         {this.props.children}
-        <OutlineModal ref='modal' keyboard modalStyle={styles.modal} contentStyle={styles.content}>
-          <div style={styles.title}>
-            {this.state.title}
-          </div>
+        <OutlineModal ref="modal" keyboard modalStyle={styles.modal} contentStyle={styles.content}>
+          <div style={styles.title}>{this.state.title}</div>
           <div style={styles.message}>
             {this.state.render ? this.state.render() : this.state.message}
           </div>
           <div style={styles.buttons}>
-            <Button disabled={this.state.loading} style={styles.cancelButton} onClick={this.hideModal}>{this.state.cancelText}</Button>
-            <Button loading={this.state.loading} onClick={this.confirm} danger>{this.state.confirmText}</Button>
+            <Button
+              disabled={this.state.loading}
+              style={styles.cancelButton}
+              onClick={this.hideModal}>
+              {this.state.cancelText}
+            </Button>
+            <Button loading={this.state.loading} onClick={this.confirm} danger>
+              {this.state.confirmText}
+            </Button>
           </div>
         </OutlineModal>
       </div>
     )
   }
-
 }

@@ -1,12 +1,13 @@
 import React from 'react'
 import debounce from 'lodash/debounce'
+import PropTypes from 'prop-types'
 
 export default function (debounceTime) {
   return function (Child) {
     return class Debounce extends React.Component {
 
       static propTypes = {
-        variables: React.PropTypes.object
+        variables: PropTypes.object
       }
 
       constructor (props) {

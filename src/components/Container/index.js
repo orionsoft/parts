@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const styles = {
   base: {
@@ -21,9 +22,9 @@ const styles = {
 export default class Container extends React.Component {
 
   static propTypes = {
-    children: React.PropTypes.any,
-    style: React.PropTypes.object,
-    size: React.PropTypes.string
+    children: PropTypes.any,
+    style: PropTypes.object,
+    size: PropTypes.string
   }
 
   static defaultProps = {

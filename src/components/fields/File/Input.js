@@ -1,6 +1,7 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import Loading from '../../Loading'
+import PropTypes from 'prop-types'
 
 const styles = {
   inputContainer: {
@@ -42,9 +43,9 @@ const styles = {
 export default class Component extends React.Component {
 
   static propTypes = {
-    placeholder: React.PropTypes.node,
-    upload: React.PropTypes.func,
-    onChange: React.PropTypes.func
+    placeholder: PropTypes.node,
+    upload: PropTypes.func,
+    onChange: PropTypes.func
   }
 
   state = {}

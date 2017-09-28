@@ -1,10 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function (ComposedComponent) {
   return class WithMe extends React.Component {
 
     static contextTypes = {
-      me: React.PropTypes.object
+      me: PropTypes.object
     }
 
     render () {

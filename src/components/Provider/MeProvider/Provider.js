@@ -1,15 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class Component extends React.Component {
   static propTypes = {
-    me: React.PropTypes.object,
-    children: React.PropTypes.node,
-    resendVerificationEmail: React.PropTypes.func
+    me: PropTypes.object,
+    children: PropTypes.node,
+    resendVerificationEmail: PropTypes.func
   }
 
   static childContextTypes = {
-    me: React.PropTypes.object,
-    resendVerificationEmail: React.PropTypes.func
+    me: PropTypes.object,
+    resendVerificationEmail: PropTypes.func
   }
 
   getChildContext () {

@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import withMutation from 'react-apollo-decorators/lib/withMutation'
 import Provider from './Provider'
 import Loading from './Loading'
+import PropTypes from 'prop-types'
 
 @withGraphQL(gql`query getMe {
   me {
@@ -25,10 +26,10 @@ import Loading from './Loading'
 }`)
 export default class Layout extends React.Component {
   static propTypes = {
-    children: React.PropTypes.node,
-    me: React.PropTypes.object,
-    resendVerificationEmail: React.PropTypes.func,
-    _data: React.PropTypes.object
+    children: PropTypes.node,
+    me: PropTypes.object,
+    resendVerificationEmail: PropTypes.func,
+    _data: PropTypes.object
   }
 
   render () {

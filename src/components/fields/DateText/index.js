@@ -1,21 +1,23 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
+import PropTypes from 'prop-types'
+
 const moment = global.moment
+
 if (!moment) {
   throw new Error('Moment is required in global variable')
 }
 
 export default class DateTextField extends React.Component {
-
   static propTypes = {
-    onChange: React.PropTypes.func,
-    value: React.PropTypes.any,
-    useHint: React.PropTypes.bool,
-    label: React.PropTypes.any,
-    errorMessage: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-    passProps: React.PropTypes.object,
-    format: React.PropTypes.string
+    onChange: PropTypes.func,
+    value: PropTypes.any,
+    useHint: PropTypes.bool,
+    label: PropTypes.any,
+    errorMessage: PropTypes.string,
+    disabled: PropTypes.bool,
+    passProps: PropTypes.object,
+    format: PropTypes.string
   }
 
   static defaultProps = {
@@ -25,15 +27,15 @@ export default class DateTextField extends React.Component {
   state = {text: ''}
 
   @autobind
-  setToday () {
+  setToday() {
     this.props.onChange(new Date())
   }
 
-  getValue () {
+  getValue() {
     return this.props.value ? moment(this.props.value).format(this.props.format) : this.state.text
   }
 
-  replaceTexts (text, previous) {
+  replaceTexts(text, previous) {
     if (previous.length > text.length) return
     if (text.length === 2 || text.length === 5) {
       this.onChange(text + '-')
@@ -41,7 +43,7 @@ export default class DateTextField extends React.Component {
     }
   }
 
-  onChange (text) {
+  onChange(text) {
     if (text === 'n') {
       return this.props.onChange(new Date())
     }
@@ -54,26 +56,26 @@ export default class DateTextField extends React.Component {
   }
 
   @autobind
-  onBlur () {
+  onBlur() {
     if (!this.props.value) {
       this.setState({text: ''})
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <div className='os-input-container'>
+        <div className="os-input-container">
           <input
-            className='os-input-text'
+            className="os-input-text"
             value={this.getValue()}
-            onChange={(event) => this.onChange(event.target.value)}
+            onChange={event => this.onChange(event.target.value)}
             onBlur={this.onBlur}
-            {...this.props.passProps} />
+            {...this.props.passProps}
+          />
         </div>
-        <div className='os-input-error'>{this.props.errorMessage}</div>
+        <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
   }
-
 }
