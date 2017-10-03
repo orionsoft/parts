@@ -1,11 +1,9 @@
 import React from 'react'
 import {AsyncCreatable, Creatable} from 'react-select'
 import autobind from 'autobind-decorator'
-import styles from '../Text/styles'
 import PropTypes from 'prop-types'
 
 export default class Select extends React.Component {
-
   static propTypes = {
     fieldName: PropTypes.string,
     onChange: PropTypes.func,
@@ -26,7 +24,7 @@ export default class Select extends React.Component {
   state = {}
 
   @autobind
-  onChange (item) {
+  onChange(item) {
     const items = this.props.multi ? item : item ? [item] : []
     if (items.length) {
       const values = items.map(item => item.value)
@@ -38,23 +36,23 @@ export default class Select extends React.Component {
   }
 
   @autobind
-  async loadOptions (input, callback) {
+  async loadOptions(input, callback) {
     const options = await this.props.loadOptions(input)
     callback(null, {options})
   }
 
   @autobind
-  filterOption (...args) {
+  filterOption(...args) {
     if (this.props.filterOption) return this.props.filterOption(...args)
     return true
   }
 
-  getFilterOption () {
+  getFilterOption() {
     if (!this.props.loadOptions) return {options: this.props.options}
     return {filterOption: this.filterOption, loadOptions: this.loadOptions}
   }
 
-  render () {
+  render() {
     const Comp = this.props.loadOptions ? AsyncCreatable : Creatable
     return (
       <div>
@@ -67,9 +65,8 @@ export default class Select extends React.Component {
           {...this.getFilterOption()}
           {...this.props.passProps}
         />
-        <div style={styles.error}>{this.props.errorMessage}</div>
+        <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
   }
-
 }
