@@ -7,8 +7,7 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./lib && babel ./src --out-dir ./lib && yarn run build-styles",
-    "build-styles":
-      "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
+    "build-styles": "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "yarn run build",
     "test": "yarn run lint && jest",
     "watch": "node watch.js",
@@ -26,7 +25,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "colors": "^1.1.2",
-    "eslint": "^4.7.2",
+    "eslint": "^4.8.0",
     "eslint-config-orionsoft": "^1.2.1",
     "graphql-tag": "^2.4.2",
     "jest-cli": "^21.2.1",
@@ -56,11 +55,11 @@
     "object-path": "^0.11.4",
     "prop-types": "^15.6.0",
     "react-autocomplete": "^1.7.1",
-    "react-icons": "^2.2.5",
+    "react-icons": "^2.2.7",
     "react-ios-switch": "^0.1.19",
     "react-notification-system": "^0.2.15",
-    "react-sortable-hoc": "^0.6.7",
-    "react-tooltip": "^3.3.0",
-    "simple-react-form": "^2.0.0"
+    "react-sortable-hoc": "^0.6.8",
+    "react-tooltip": "^3.3.1",
+    "simple-react-form": "^2.0.1"
   }
 }

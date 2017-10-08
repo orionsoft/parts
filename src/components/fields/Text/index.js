@@ -9,7 +9,7 @@ export default class Text extends React.Component {
     passProps: PropTypes.object,
     placeholder: PropTypes.node,
     errorMessage: PropTypes.node,
-    disabled: PropTypes.boolean
+    disabled: PropTypes.bool
   }
 
   static defaultProps = {
