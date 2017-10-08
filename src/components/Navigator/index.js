@@ -109,26 +109,28 @@ export default class Navigator extends React.Component {
   }
 
   renderRightIcon() {
-    if (!this.state.showArrowRight) return
     const element = this.refs.inner
     if (!element) return
     const top = element.getBoundingClientRect().top + window.scrollY
     const right = element.getBoundingClientRect().right - window.scrollX
     return (
-      <div className="os-navigator-icon" style={{top, left: right - 30}}>
+      <div
+        className="os-navigator-icon"
+        style={{opacity: this.state.showArrowRight ? 1 : 0, top, left: right - 30}}>
         <RightIcon size={30} />
       </div>
     )
   }
 
   renderLeftIcon() {
-    if (!this.state.showArrowLeft) return
     const element = this.refs.inner
     if (!element) return
     const top = element.getBoundingClientRect().top + window.scrollY
     const left = element.getBoundingClientRect().left + window.scrollX
     return (
-      <div className="os-navigator-icon" style={{top, left: left}}>
+      <div
+        className="os-navigator-icon"
+        style={{opacity: this.state.showArrowLeft ? 1 : 0, top, left: left}}>
         <LeftIcon size={30} />
       </div>
     )
