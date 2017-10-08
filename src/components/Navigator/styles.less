@@ -58,10 +58,11 @@
   font-size: 20px;
 }
 
-.os-navigator-item:last-child a {
-  margin-right: 20px;
+.os-navigator-item:last-child::after {
+  width: 20px;
+  content: '';
 }
 
-.os-navigator-itemActive {
+.os-navigator-itemActive a {
   border-bottom: #fff 2px solid;
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {withRouter, Link} from 'react-router'
-import withSize from '../../decorators/withSize'
 import autobind from 'autobind-decorator'
 import sleep from '../../helpers/sleep'
 import RightIcon from 'react-icons/lib/md/chevron-right'
@@ -9,12 +8,10 @@ import LeftIcon from 'react-icons/lib/md/chevron-left'
 import parseColor from '../../helpers/parseColor'
 
 @withRouter
-@withSize
 export default class Navigator extends React.Component {
   static propTypes = {
     router: PropTypes.object,
     items: PropTypes.array,
-    innerWidth: PropTypes.number,
     color: PropTypes.string
   }
 
@@ -26,6 +23,7 @@ export default class Navigator extends React.Component {
 
   async componentDidMount() {
     this.refs.inner.addEventListener('scroll', this.checkScroll)
+    window.addEventListener('resize', this.checkScroll)
     this.checkScroll()
     await sleep(200)
     if (this.refs.inner) {
@@ -35,6 +33,7 @@ export default class Navigator extends React.Component {
 
   componentWillUnmount() {
     this.refs.inner.removeEventListener('scroll', this.checkScroll)
+    window.removeEventListener('resize', this.checkScroll)
   }
 
   @autobind
@@ -44,13 +43,22 @@ export default class Navigator extends React.Component {
     const innerWidth = element.scrollWidth
     const scrollLeft = element.scrollLeft
     const offsetRight = innerWidth - scrollLeft - width
-    if (width >= innerWidth) return
-    this.setState({
-      isSmall: this.props.innerWidth <= 1220,
-      showShadows: true,
-      showArrowLeft: scrollLeft > 10,
-      showArrowRight: offsetRight > 10
-    })
+
+    if (width >= innerWidth) {
+      this.setState({
+        isSmall: window.innerWidth <= 1220,
+        showShadows: false,
+        showArrowLeft: false,
+        showArrowRight: false
+      })
+    } else {
+      this.setState({
+        isSmall: window.innerWidth <= 1220,
+        showShadows: true,
+        showArrowLeft: scrollLeft > 10,
+        showArrowRight: offsetRight > 10
+      })
+    }
   }
 
   renderItems() {
