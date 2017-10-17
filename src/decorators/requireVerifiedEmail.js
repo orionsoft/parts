@@ -1,6 +1,8 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
+import Button from '../components/Button'
+import isPlainObject from 'lodash/isPlainObject'
 
 const styles = {
   container: {
@@ -9,6 +11,7 @@ const styles = {
   },
   notAllowed: {
     fontSize: 20,
+    fontWeight: 'bold',
     color: 'red'
   },
   needVerify: {
@@ -19,20 +22,6 @@ const styles = {
   buttonContainer: {
     marginTop: 10
   },
-  button: {
-    fontFamily: 'inherit',
-    fontSize: 16,
-    padding: '6px 10px',
-    borderRadius: 5,
-    border: 0,
-    backgroundColor: '#dedede',
-    outline: 'none',
-    cursor: 'pointer'
-  },
-  sending: {
-    backgroundColor: '#eee',
-    cursor: 'progress'
-  },
   email: {
     marginTop: 10,
     fontSize: 13,
@@ -40,62 +29,77 @@ const styles = {
   }
 }
 
-export default function (ComposedComponent) {
-  class WithRoles extends React.Component {
+const getDecorator = function(options) {
+  return function(ComposedComponent) {
+    class WithRoles extends React.Component {
+      static contextTypes = {
+        me: PropTypes.object,
+        resendVerificationEmail: PropTypes.func
+      }
 
-    static contextTypes = {
-      me: PropTypes.object,
-      resendVerificationEmail: PropTypes.func
-    }
+      state = {}
 
-    state = {}
+      @autobind
+      async sendVerificationEmail() {
+        if (this.state.sending) return
+        const me = this.context.me || {}
+        const emails = me.emails || []
+        const email = emails[0] || {}
+        this.setState({sending: true})
+        await this.context.resendVerificationEmail({email: email.address})
+      }
 
-    @autobind
-    async sendVerificationEmail () {
-      if (this.state.sending) return
-      const me = this.context.me || {}
-      const emails = me.emails || []
-      const email = emails[0] || {}
-      this.setState({sending: true})
-      await this.context.resendVerificationEmail({email: email.address})
-    }
-
-    renderNotAllowed () {
-      const me = this.context.me || {}
-      const emails = me.emails || []
-      const email = emails[0] || {}
-      return (
-        <div style={styles.container}>
-          <div style={styles.notAllowed}>
-            Not allowed
+      renderNotAllowed() {
+        const me = this.context.me || {}
+        const emails = me.emails || []
+        const email = emails[0] || {}
+        return (
+          <div style={styles.container}>
+            <div style={styles.notAllowed}>{options.title}</div>
+            <div style={styles.needVerify}>
+              {this.state.sending ? options.checkYourInbox : options.youNeedToVerify}
+            </div>
+            <div style={styles.buttonContainer}>
+              <Button loading={this.state.sending} onClick={this.sendVerificationEmail}>
+                {options.buttonText}
+              </Button>
+            </div>
+            <div style={styles.email}>{email.address}</div>
           </div>
-          <div style={styles.needVerify}>
-            {this.state.sending ? 'Check your inbox' : 'You need to verify your email'}
-          </div>
-          <div style={styles.buttonContainer}>
-            <button style={{...styles.button, ...(this.state.sending ? styles.sending : {})}} onClick={this.sendVerificationEmail}>
-              Send verification email
-            </button>
-          </div>
-          <div style={styles.email}>
-            {email.address}
-          </div>
-        </div>
-      )
-    }
+        )
+      }
 
-    render () {
-      const me = this.context.me || {}
-      const emails = me.emails || []
-      const email = emails[0] || {}
-      const verified = email.verified || false
-      if (verified) {
-        return <ComposedComponent email={email.address} {...this.props} />
-      } else {
-        return this.renderNotAllowed()
+      render() {
+        const me = this.context.me || {}
+        const emails = me.emails || []
+        const email = emails[0] || {}
+        const verified = email.verified || false
+        if (verified) {
+          return <ComposedComponent email={email.address} {...this.props} />
+        } else {
+          return this.renderNotAllowed()
+        }
       }
     }
-  }
 
-  return WithRoles
+    return WithRoles
+  }
+}
+
+export default function(passedOptions) {
+  const defaultOptions = {
+    title: 'Not allowed',
+    checkYourInbox: 'Check your inbox',
+    youNeedToVerify: 'You need to verify your email',
+    buttonText: 'Send verification email'
+  }
+  if (isPlainObject(passedOptions)) {
+    const options = {
+      ...defaultOptions,
+      ...passedOptions
+    }
+    return getDecorator(options)
+  } else {
+    return getDecorator(defaultOptions)(passedOptions)
+  }
 }
