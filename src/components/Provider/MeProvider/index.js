@@ -6,24 +6,32 @@ import Provider from './Provider'
 import Loading from './Loading'
 import PropTypes from 'prop-types'
 
-@withGraphQL(gql`query getMe {
-  me {
-    _id
-    roles
-    emails {
-      address
-      verified
+@withGraphQL(
+  gql`
+    query getMe {
+      me {
+        _id
+        roles
+        emails {
+          address
+          verified
+        }
+      }
+    }
+  `,
+  {
+    loading: null,
+    networkErrorComponent: null,
+    options: {pollInterval: 5000}
+  }
+)
+@withMutation(gql`
+  mutation resendVerificationEmail($email: String) {
+    resendVerificationEmail(email: $email) {
+      success
     }
   }
-}`, {
-  loading: null,
-  networkErrorComponent: null
-})
-@withMutation(gql`mutation resendVerificationEmail ($email: String) {
-  resendVerificationEmail (email: $email) {
-    success
-  }
-}`)
+`)
 export default class Layout extends React.Component {
   static propTypes = {
     children: PropTypes.node,
@@ -32,7 +40,7 @@ export default class Layout extends React.Component {
     _data: PropTypes.object
   }
 
-  render () {
+  render() {
     if (this.props._data.networkStatus !== 7) return <Loading />
     return (
       <Provider me={this.props.me} resendVerificationEmail={this.props.resendVerificationEmail}>
