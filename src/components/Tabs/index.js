@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withRouter, Link} from 'react-router'
+import {withRouter, Link} from 'react-router-dom'
 import autobind from 'autobind-decorator'
 import sleep from '../../helpers/sleep'
 import RightIcon from 'react-icons/lib/md/chevron-right'
@@ -10,7 +10,7 @@ import parseColor from '../../helpers/parseColor'
 @withRouter
 export default class Tabs extends React.Component {
   static propTypes = {
-    router: PropTypes.object,
+    location: PropTypes.object,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.node.isRequired,
@@ -68,7 +68,7 @@ export default class Tabs extends React.Component {
 
   renderItems() {
     const items = this.props.items.map((item, index) => {
-      const pathname = this.props.router.location.pathname
+      const pathname = this.props.location.pathname
       const active = pathname === item.path
       const classNames = ['os-tabs-item']
       if (active) classNames.push('os-tabs-itemActive')
