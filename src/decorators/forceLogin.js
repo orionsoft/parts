@@ -10,7 +10,7 @@ export default function (ComposedComponent) {
     }
 
     redirect () {
-      this.context.router.replace({
+      this.context.router.history.replace({
         pathname: '/login',
         state: { nextPathname: window.location.pathname }
       })
