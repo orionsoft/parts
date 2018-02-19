@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import withoutLink from './withoutLink'
 
 export default class Button extends withoutLink {
