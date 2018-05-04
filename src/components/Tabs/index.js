@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withRouter, Link} from 'react-router'
+import {withRouter} from 'react-router'
+import {Link} from 'react-router-dom'
 import autobind from 'autobind-decorator'
 import sleep from '../../helpers/sleep'
 import RightIcon from 'react-icons/lib/md/chevron-right'
@@ -10,7 +11,7 @@ import parseColor from '../../helpers/parseColor'
 @withRouter
 export default class Tabs extends React.Component {
   static propTypes = {
-    router: PropTypes.object,
+    location: PropTypes.object,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.node.isRequired,
@@ -68,7 +69,7 @@ export default class Tabs extends React.Component {
 
   renderItems() {
     const items = this.props.items.map((item, index) => {
-      const pathname = this.props.router.location.pathname
+      const pathname = this.props.location.pathname
       const active = pathname === item.path
       const classNames = ['os-tabs-item']
       if (active) classNames.push('os-tabs-itemActive')
@@ -102,9 +103,9 @@ export default class Tabs extends React.Component {
       return {
         top,
         left: isLeft ? left : right - 30,
-        background: `-webkit-gradient(linear,${isLeft ? '100' : '0'}% 50%,${isLeft
-          ? '0'
-          : '100'}% 50%,color-stop(0%, rgba(${color}, 0)),color-stop(100%, rgba(${color}, 1)))`
+        background: `-webkit-gradient(linear,${isLeft ? '100' : '0'}% 50%,${
+          isLeft ? '0' : '100'
+        }% 50%,color-stop(0%, rgba(${color}, 0)),color-stop(100%, rgba(${color}, 1)))`
       }
     }
     return [

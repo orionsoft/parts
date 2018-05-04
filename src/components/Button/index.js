@@ -1,15 +1,13 @@
 import React from 'react'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import withoutLink from './withoutLink'
 
 export default class Button extends withoutLink {
-
-  renderLinkButton () {
+  renderLinkButton() {
     return (
-      <Link to={this.props.to} className='os_buttonLink'>
+      <Link to={this.props.to} className="os_buttonLink">
         {this.renderButton()}
       </Link>
     )
   }
-
 }

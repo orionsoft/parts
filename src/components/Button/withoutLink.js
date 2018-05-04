@@ -4,12 +4,13 @@ import omit from 'lodash/omit'
 import Tooltip from '../Tooltip'
 import BounceLoading from '../BounceLoading'
 import PropTypes from 'prop-types'
+import autobind from 'autobind-decorator'
 
 export default class Button extends React.Component {
-
   static propTypes = {
     tooltip: PropTypes.string,
     to: PropTypes.string,
+    href: PropTypes.string,
     linkButton: PropTypes.bool,
     label: PropTypes.any,
     children: PropTypes.any,
@@ -19,7 +20,9 @@ export default class Button extends React.Component {
     style: PropTypes.object,
     disabled: PropTypes.bool,
     loading: PropTypes.bool,
-    fullWidth: PropTypes.bool
+    fullWidth: PropTypes.bool,
+    icon: PropTypes.any,
+    onClick: PropTypes.func
   }
 
   static defaultProps = {
@@ -32,19 +35,26 @@ export default class Button extends React.Component {
     fullWidth: false
   }
 
-  getChildProps () {
+  state = {}
+
+  getChildProps() {
     const omitKeys = keys(Button.propTypes)
-    if (this.props.disabled || this.props.loading) {
-      omitKeys.push('onClick')
-    }
     return omit(this.props, ...omitKeys)
   }
 
-  getClassName () {
+  @autobind
+  async onClick() {
+    if (this.props.disabled || this.props.loading || this.state.loading) return
+    this.setState({loading: true})
+    await this.props.onClick()
+    this.setState({loading: false})
+  }
+
+  getClassName() {
     const classes = ['orion_button']
     if (this.props.disabled) {
       classes.push('orion_disabled')
-    } else if (this.props.loading) {
+    } else if (this.props.loading || this.state.loading) {
       classes.push('orion_loading')
     } else if (this.props.danger) {
       classes.push('orion_danger')
@@ -60,17 +70,29 @@ export default class Button extends React.Component {
     return classes.join(' ')
   }
 
-  renderInner () {
-    if (this.props.loading) {
+  renderInner() {
+    if (this.props.loading || this.state.loading) {
       return <BounceLoading />
-    } if (this.props.label) {
-      return this.props.label
+    }
+    if (this.props.icon) {
+      return (
+        <span>
+          {this.renderIcon()}
+          {this.props.children}
+        </span>
+      )
     } else {
-      return this.props.children
+      return this.props.label || this.props.children
     }
   }
 
-  renderButton () {
+  renderIcon() {
+    const Icon = this.props.icon
+    if (!Icon) return
+    return <Icon style={{marginRight: 10}} />
+  }
+
+  renderButton() {
     return (
       <span className={this.getClassName()} style={this.props.style}>
         {this.renderInner()}
@@ -78,32 +100,27 @@ export default class Button extends React.Component {
     )
   }
 
-  renderLinkButton () {
-    return (
-      <a {...this.getChildProps()}>
-        {this.renderButton()}
-      </a>
-    )
+  renderLinkButton() {
+    return <a {...this.getChildProps()}>{this.renderButton()}</a>
   }
 
-  renderMain () {
+  renderMain() {
     if (this.props.linkButton || this.props.href || this.props.to) {
       return this.renderLinkButton()
     } else {
       return (
-        <span className='os_button_container' {...this.getChildProps()}>
+        <span className="os_button_container" {...this.getChildProps()} onClick={this.onClick}>
           {this.renderButton()}
         </span>
       )
     }
   }
 
-  render () {
+  render() {
     if (this.props.tooltip) {
       return <Tooltip content={this.props.tooltip}>{this.renderMain()}</Tooltip>
     } else {
       return this.renderMain()
     }
   }
-
 }

@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./lib && babel ./src --out-dir ./lib && yarn run build-styles",
-    "build-styles": "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
+    "build-styles":
+      "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "yarn run build",
     "test": "yarn run lint && jest",
     "watch": "node watch.js",
@@ -37,7 +38,6 @@
     "react-apollo": "^1.4.16",
     "react-apollo-decorators": "^1.4.11",
     "react-dom": "^16.0.0",
-    "react-router": "^3.0.1",
     "react-select": "^1.0.0-rc.10"
   },
   "peerDependencies": {
@@ -48,7 +48,6 @@
     "react-apollo": "^1.0.0",
     "react-apollo-decorators": "^1.2.1",
     "react-dom": "^15.4.2",
-    "react-router": "^3.0.1",
     "react-select": "^1.0.0-rc.2"
   },
   "dependencies": {
