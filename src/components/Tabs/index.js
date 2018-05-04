@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {withRouter} from 'react-router'
-import {Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import autobind from 'autobind-decorator'
 import sleep from '../../helpers/sleep'
 import RightIcon from 'react-icons/lib/md/chevron-right'

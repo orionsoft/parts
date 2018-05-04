@@ -1,6 +1,6 @@
 import React from 'react'
 import Container from '../Container'
-import {Link} from 'react-router'
+import {Link} from 'react-router-dom'
 import Margin from './Margin'
 import PropTypes from 'prop-types'
 
