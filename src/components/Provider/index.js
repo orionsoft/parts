@@ -14,21 +14,15 @@ export default class OrionsoftProvider extends React.Component {
     meProvider: true
   }
 
-  renderMe () {
+  renderMe() {
     if (!this.props.meProvider) return this.props.children
-    return (
-      <MeProvider>
-        {this.props.children}
-      </MeProvider>
-    )
+    return <MeProvider>{this.props.children}</MeProvider>
   }
 
-  render () {
+  render() {
     return (
       <Message>
-        <Modal>
-          {this.renderMe()}
-        </Modal>
+        <Modal>{this.renderMe()}</Modal>
       </Message>
     )
   }

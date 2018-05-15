@@ -4,7 +4,6 @@ import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
 
 export default class WithMessage extends React.Component {
-
   static propTypes = {
     children: PropTypes.node
   }
@@ -13,23 +12,23 @@ export default class WithMessage extends React.Component {
     showMessage: PropTypes.func
   }
 
-  getChildContext () {
+  getChildContext() {
     return {
       showMessage: this.showMessage
     }
   }
 
   @autobind
-  showMessage (message, passedOptions) {
+  showMessage(message, passedOptions) {
     const options = {
-      message: typeof message === 'string' ? message.replace('GraphQL error: ', '') : message,
+      message,
       level: 'info',
       ...passedOptions
     }
     this.refs.notificationSystem.addNotification(options)
   }
 
-  getStyle () {
+  getStyle() {
     return {
       NotificationItem: {
         DefaultStyle: {
@@ -61,11 +60,11 @@ export default class WithMessage extends React.Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <div>
         {this.props.children}
-        <NotificationSystem ref='notificationSystem' style={this.getStyle()} />
+        <NotificationSystem ref="notificationSystem" style={this.getStyle()} />
       </div>
     )
   }

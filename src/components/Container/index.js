@@ -20,7 +20,6 @@ const styles = {
 }
 
 export default class Container extends React.Component {
-
   static propTypes = {
     children: PropTypes.any,
     style: PropTypes.object,
@@ -31,7 +30,7 @@ export default class Container extends React.Component {
     size: 'big'
   }
 
-  getStyle () {
+  getStyle() {
     return {
       ...styles.base,
       ...styles[this.props.size],
@@ -39,12 +38,7 @@ export default class Container extends React.Component {
     }
   }
 
-  render () {
-    return (
-      <div style={this.getStyle()}>
-        {this.props.children}
-      </div>
-    )
+  render() {
+    return <div style={this.getStyle()}>{this.props.children}</div>
   }
-
 }

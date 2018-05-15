@@ -24,22 +24,24 @@ export default function(ComposedComponent) {
     }
 
     @autobind
-    showMessage(error, options = {}) {
-      options.level = options.level || typeof error === 'string' ? '' : 'error'
-      if (typeof error === 'string') {
-        return this.context.showMessage(error, options)
-      }
-      if (error.graphQLErrors) {
-        for (const graphError of error.graphQLErrors) {
+    showMessage(message, options = {}) {
+      if (typeof message === 'string') {
+        this.context.showMessage(message)
+      } else if (message.graphQLErrors) {
+        options.level = 'error'
+        for (const graphError of message.graphQLErrors) {
           if (graphError.error === 'validationError') {
             this.context.showMessage(this.getValidationErrorString(graphError), options)
           } else {
-            this.context.showMessage(error.message, options)
+            this.context.showMessage(graphError.message, options)
           }
         }
-        return
+      } else if (message.message) {
+        options.level = 'error'
+        return this.context.showMessage(message.message, options)
+      } else {
+        return this.context.showMessage(message, options)
       }
-      return this.context.showMessage(error.message, options)
     }
 
     render() {
