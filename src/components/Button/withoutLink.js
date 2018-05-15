@@ -89,7 +89,7 @@ export default class Button extends React.Component {
   renderIcon() {
     const Icon = this.props.icon
     if (!Icon) return
-    return <Icon style={{marginRight: 10}} />
+    return <Icon style={{marginRight: 10, position: 'relative', top: -1}} />
   }
 
   renderButton() {
