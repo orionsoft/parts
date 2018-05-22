@@ -21,6 +21,13 @@ export default class NComponent extends React.Component {
 
   state = {}
 
+  componentDidMount() {
+    if (this.props.value) {
+      const label = this.formatValue(this.props.value)
+      this.setState({label})
+    }
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (this.state.value !== this.props.value) {
       if (this.props.value) {
