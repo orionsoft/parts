@@ -12,7 +12,8 @@ export default class Textarea extends React.Component {
     passProps: PropTypes.object,
     placeholder: PropTypes.node,
     errorMessage: PropTypes.node,
-    autoResize: PropTypes.bool
+    autoResize: PropTypes.bool,
+    rows: PropTypes.number
   }
 
   static defaultProps = {
@@ -43,7 +44,7 @@ export default class Textarea extends React.Component {
           <textarea
             ref='input'
             className='os-input-text'
-            rows={1}
+            rows={this.props.rows || 1}
             style={{height: this.state.height}}
             value={this.props.value}
             placeholder={this.props.placeholder}
