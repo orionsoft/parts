@@ -111,7 +111,8 @@ module.exports = modalFactory({
       width: '500px',
       transform: 'translate3d(-50%, -50%, 0)',
       top: '50%',
-      left: '50%'
+      left: '50%',
+      maxWidth: '90%'
     })
   },
   getBackdropStyle: function(willHidden) {
