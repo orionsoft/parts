@@ -9,7 +9,9 @@ export default class Text extends React.Component {
     passProps: PropTypes.object,
     placeholder: PropTypes.node,
     errorMessage: PropTypes.node,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    label: PropTypes.node,
+    description: PropTypes.node
   }
 
   static defaultProps = {
@@ -20,6 +22,7 @@ export default class Text extends React.Component {
   render() {
     return (
       <div>
+        <div className="label">{this.props.label}</div>
         <div className="os-input-container">
           <input
             ref="input"
@@ -32,6 +35,7 @@ export default class Text extends React.Component {
             {...this.props.passProps}
           />
         </div>
+        <div className="description">{this.props.description}</div>
         <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
