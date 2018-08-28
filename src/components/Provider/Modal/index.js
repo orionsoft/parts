@@ -5,29 +5,6 @@ import Button from '../../Button'
 import withKeyboardEvent from '../../../decorators/withKeyboardEvent'
 import PropTypes from 'prop-types'
 
-const styles = {
-  modal: {},
-  content: {
-    outline: 'none',
-    backgroundColor: '#fff',
-    padding: 20
-  },
-  title: {
-    fontSize: 26,
-    fontWeight: 700,
-    marginBottom: 10
-  },
-  message: {
-    marginBottom: 20
-  },
-  buttons: {
-    textAlign: 'right'
-  },
-  cancelButton: {
-    marginRight: 10
-  }
-}
-
 @withKeyboardEvent('enter', 'confirm')
 export default class Modal extends React.Component {
   static propTypes = {
@@ -80,21 +57,23 @@ export default class Modal extends React.Component {
     return (
       <div>
         {this.props.children}
-        <OutlineModal ref="modal" keyboard modalStyle={styles.modal} contentStyle={styles.content}>
-          <div style={styles.title}>{this.state.title}</div>
-          <div style={styles.message}>
-            {this.state.render ? this.state.render() : this.state.message}
-          </div>
-          <div style={styles.buttons}>
-            <Button
-              disabled={this.state.loading}
-              style={styles.cancelButton}
-              onClick={this.hideModal}>
-              {this.state.cancelText}
-            </Button>
-            <Button loading={this.state.loading} onClick={this.confirm} danger>
-              {this.state.confirmText}
-            </Button>
+        <OutlineModal ref="modal" keyboard>
+          <div className="os_content">
+            <div className="os_title">{this.state.title}</div>
+            <div className="os_message">
+              {this.state.render ? this.state.render() : this.state.message}
+            </div>
+            <div className="os_buttons">
+              <Button
+                disabled={this.state.loading}
+                className="os_cancelButton"
+                onClick={this.hideModal}>
+                {this.state.cancelText}
+              </Button>
+              <Button loading={this.state.loading} onClick={this.confirm} danger>
+                {this.state.confirmText}
+              </Button>
+            </div>
           </div>
         </OutlineModal>
       </div>
