@@ -58,7 +58,7 @@ export default class Modal extends React.Component {
       <div>
         {this.props.children}
         <OutlineModal ref="modal" keyboard>
-          <div className="os_content">
+          <div className="os_modal_content">
             <div className="os_title">{this.state.title}</div>
             <div className="os_message">
               {this.state.render ? this.state.render() : this.state.message}
