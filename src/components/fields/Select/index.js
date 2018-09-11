@@ -14,7 +14,9 @@ export default class Select extends React.Component {
     errorMessage: PropTypes.node,
     loadOptions: PropTypes.func,
     isValidNewOption: PropTypes.func,
-    filterOption: PropTypes.func
+    filterOption: PropTypes.func,
+    label: PropTypes.node,
+    description: PropTypes.node
   }
 
   static defaultProps = {
@@ -56,6 +58,7 @@ export default class Select extends React.Component {
     const Comp = this.props.loadOptions ? AsyncCreatable : Creatable
     return (
       <div>
+        <div className="label">{this.props.label}</div>
         <Comp
           multi={this.props.multi}
           name={this.props.fieldName}
@@ -65,6 +68,7 @@ export default class Select extends React.Component {
           {...this.getFilterOption()}
           {...this.props.passProps}
         />
+        <div className="description">{this.props.description}</div>
         <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
