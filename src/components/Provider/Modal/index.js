@@ -8,17 +8,8 @@ import PropTypes from 'prop-types'
 @withKeyboardEvent('enter', 'confirm')
 export default class Modal extends React.Component {
   static propTypes = {
-    children: PropTypes.node
-  }
-
-  static childContextTypes = {
-    showModal: PropTypes.func
-  }
-
-  getChildContext() {
-    return {
-      showModal: this.showModal
-    }
+    children: PropTypes.node,
+    setShowModal: PropTypes.func
   }
 
   state = {}
@@ -54,29 +45,27 @@ export default class Modal extends React.Component {
   }
 
   render() {
+    this.props.setShowModal(this.showModal)
     return (
-      <div>
-        {this.props.children}
-        <OutlineModal ref="modal" keyboard>
-          <div className="os_modal_content">
-            <div className="os_title">{this.state.title}</div>
-            <div className="os_message">
-              {this.state.render ? this.state.render() : this.state.message}
-            </div>
-            <div className="os_buttons">
-              <Button
-                disabled={this.state.loading}
-                className="os_cancelButton"
-                onClick={this.hideModal}>
-                {this.state.cancelText}
-              </Button>
-              <Button loading={this.state.loading} onClick={this.confirm} danger>
-                {this.state.confirmText}
-              </Button>
-            </div>
+      <OutlineModal ref="modal" keyboard>
+        <div className="os_modal_content">
+          <div className="os_title">{this.state.title}</div>
+          <div className="os_message">
+            {this.state.render ? this.state.render() : this.state.message}
           </div>
-        </OutlineModal>
-      </div>
+          <div className="os_buttons">
+            <Button
+              disabled={this.state.loading}
+              className="os_cancelButton"
+              onClick={this.hideModal}>
+              {this.state.cancelText}
+            </Button>
+            <Button loading={this.state.loading} onClick={this.confirm} danger>
+              {this.state.confirmText}
+            </Button>
+          </div>
+        </div>
+      </OutlineModal>
     )
   }
 }

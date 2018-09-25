@@ -1,15 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import ModalContext from '../components/Provider/Modal/Context'
 
-export default function (ComposedComponent) {
+export default function(ComposedComponent) {
   return class WithModal extends React.Component {
-
-    static contextTypes = {
-      showModal: PropTypes.func.isRequired
-    }
-
-    render () {
-      return <ComposedComponent {...this.props} showModal={this.context.showModal} />
+    render() {
+      return (
+        <ModalContext.Consumer>
+          {showModal => <ComposedComponent {...this.props} showModal={showModal} />}
+        </ModalContext.Consumer>
+      )
     }
   }
 }

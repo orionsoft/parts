@@ -3,6 +3,7 @@ import Message from './Message'
 import Modal from './Modal'
 import MeProvider from './MeProvider'
 import PropTypes from 'prop-types'
+import ModalContext from './Modal/Context'
 
 export default class OrionsoftProvider extends React.Component {
   static propTypes = {
@@ -22,7 +23,10 @@ export default class OrionsoftProvider extends React.Component {
   render() {
     return (
       <Message>
-        <Modal>{this.renderMe()}</Modal>
+        <Modal setShowModal={showModal => (this.showModal = showModal)} />
+        <ModalContext.Provider value={options => this.showModal(options)}>
+          {this.renderMe()}
+        </ModalContext.Provider>
       </Message>
     )
   }
