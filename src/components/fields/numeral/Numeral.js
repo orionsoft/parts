@@ -16,7 +16,8 @@ export default class NComponent extends React.Component {
     label: PropTypes.any,
     errorMessage: PropTypes.string,
     disabled: PropTypes.bool,
-    passProps: PropTypes.object
+    passProps: PropTypes.object,
+    description: PropTypes.node
   }
 
   state = {}
@@ -89,6 +90,7 @@ export default class NComponent extends React.Component {
   render() {
     return (
       <div>
+        <div className="label">{this.props.label}</div>
         <div className="os-input-container">
           <input
             className="os-input-text"
@@ -100,6 +102,7 @@ export default class NComponent extends React.Component {
             {...this.props.passProps}
           />
         </div>
+        <div className="description">{this.props.description}</div>
         <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
