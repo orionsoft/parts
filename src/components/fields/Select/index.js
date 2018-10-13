@@ -1,71 +1,50 @@
 import React from 'react'
-import {AsyncCreatable, Creatable} from 'react-select'
+import Select from 'react-select'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
 
-export default class Select extends React.Component {
+export default class SelectField extends React.Component {
   static propTypes = {
     fieldName: PropTypes.string,
     onChange: PropTypes.func,
     value: PropTypes.any,
     passProps: PropTypes.object,
-    multi: PropTypes.bool,
-    options: PropTypes.array,
     errorMessage: PropTypes.node,
-    loadOptions: PropTypes.func,
-    isValidNewOption: PropTypes.func,
-    filterOption: PropTypes.func,
     label: PropTypes.node,
-    description: PropTypes.node
+    description: PropTypes.node,
+    multi: PropTypes.bool,
+    options: PropTypes.array
   }
 
   static defaultProps = {
-    isValidNewOption: () => false
+    options: []
   }
 
   state = {}
 
   @autobind
-  onChange(item) {
-    const items = this.props.multi ? item : item ? [item] : []
-    if (items.length) {
-      const values = items.map(item => item.value)
-      const finalValue = this.props.multi ? values : values[0]
-      this.props.onChange(finalValue)
-    } else {
-      this.props.onChange(null)
-    }
+  onChange({value}) {
+    this.props.onChange(value)
   }
 
-  @autobind
-  async loadOptions(input, callback) {
-    const options = await this.props.loadOptions(input)
-    callback(null, {options})
-  }
-
-  @autobind
-  filterOption(...args) {
-    if (this.props.filterOption) return this.props.filterOption(...args)
-    return true
-  }
-
-  getFilterOption() {
-    if (!this.props.loadOptions) return {options: this.props.options}
-    return {filterOption: this.filterOption, loadOptions: this.loadOptions}
+  getValue() {
+    const {value, options} = this.props
+    const selectedOption = options.find(option => option.value === value)
+    if (!selectedOption) return
+    return selectedOption
   }
 
   render() {
-    const Comp = this.props.loadOptions ? AsyncCreatable : Creatable
     return (
       <div>
         <div className="label">{this.props.label}</div>
-        <Comp
-          multi={this.props.multi}
+        <Select
+          classNamePrefix="orion-select"
+          isMulti={this.props.multi}
           name={this.props.fieldName}
-          value={this.props.value}
-          isValidNewOption={this.props.isValidNewOption}
+          value={this.getValue()}
           onChange={this.onChange}
-          {...this.getFilterOption()}
+          options={this.props.options}
           {...this.props.passProps}
         />
         <div className="description">{this.props.description}</div>
