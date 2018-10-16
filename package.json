@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "build": "rm -rf ./lib && babel ./src --out-dir ./lib && yarn run build-styles",
-    "build-styles": "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
+    "build-styles":
+      "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
     "prepublish": "yarn run build",
     "test": "yarn run lint && jest",
     "watch": "node watch.js",
@@ -37,7 +38,6 @@
     "react": "^16.5.2",
     "react-apollo": "^2.2.4",
     "react-apollo-decorators": "^2.0.2",
-    "react-color": "^2.14.1",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
     "react-select": "^2.1.0"
@@ -49,7 +49,6 @@
     "react": "^16.4.1",
     "react-apollo": "^2.1.8",
     "react-apollo-decorators": "^1.4.28",
-    "react-color": "^2.14.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
     "react-select": "^1.2.1",
@@ -62,6 +61,7 @@
     "object-path": "^0.11.4",
     "prop-types": "^15.6.2",
     "react-autocomplete": "^1.8.1",
+    "react-color": "^2.14.1",
     "react-icons": "^2.2.7",
     "react-ios-switch": "^0.1.19",
     "react-notification-system": "^0.2.17",
