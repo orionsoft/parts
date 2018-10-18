@@ -23,15 +23,25 @@ export default class SelectField extends React.Component {
   state = {}
 
   @autobind
-  onChange({value}) {
-    this.props.onChange(value)
+  onChange(params) {
+    const {multi} = this.props
+    if (multi) {
+      this.props.onChange(params.map(item => item.value))
+    } else {
+      this.props.onChange(params.value)
+    }
   }
 
   getValue() {
-    const {value, options} = this.props
-    const selectedOption = options.find(option => option.value === value)
-    if (!selectedOption) return
-    return selectedOption
+    const {value, options, multi} = this.props
+    if (multi) {
+      const selectedOptions = options.filter(option => value.includes(option.value))
+      return selectedOptions
+    } else {
+      const selectedOption = options.find(option => option.value === value)
+      if (!selectedOption) return
+      return selectedOption
+    }
   }
 
   render() {
