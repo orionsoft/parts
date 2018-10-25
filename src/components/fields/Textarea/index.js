@@ -4,7 +4,6 @@ import getHeight from './getHeight'
 import PropTypes from 'prop-types'
 
 export default class Textarea extends React.Component {
-
   static propTypes = {
     onChange: PropTypes.func,
     value: PropTypes.string,
@@ -23,7 +22,7 @@ export default class Textarea extends React.Component {
   state = {height: 41}
 
   @autobind
-  autoResize (event) {
+  autoResize(event) {
     if (!this.props.autoResize) return
     const {height} = getHeight(this.refs.input)
     if (this.state.height !== height) {
@@ -32,28 +31,28 @@ export default class Textarea extends React.Component {
   }
 
   @autobind
-  onChange (event) {
+  onChange(event) {
     this.props.onChange(event.target.value)
     this.autoResize(event)
   }
 
-  render () {
+  render() {
     return (
       <div>
-        <div className='os-input-container'>
+        <div className="os-input-container">
           <textarea
-            ref='input'
-            className='os-input-text'
+            ref="input"
+            className="os-input-text"
             rows={this.props.rows || 1}
             style={{height: this.state.height}}
-            value={this.props.value}
+            value={this.props.value || ''}
             placeholder={this.props.placeholder}
             onChange={this.onChange}
-            {...this.props.passProps} />
+            {...this.props.passProps}
+          />
         </div>
-        <div className='os-input-error'>{this.props.errorMessage}</div>
+        <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
   }
-
 }

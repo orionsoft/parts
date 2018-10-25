@@ -28,7 +28,7 @@ export default class Text extends React.Component {
             ref="input"
             className="os-input-text"
             type={this.props.fieldType}
-            value={this.props.value}
+            value={this.props.value || ''}
             placeholder={this.props.placeholder}
             onChange={event => this.props.onChange(event.target.value)}
             disabled={this.props.disabled}
