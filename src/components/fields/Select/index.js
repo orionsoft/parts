@@ -35,8 +35,10 @@ export default class SelectField extends React.Component {
   getValue() {
     const {value, options, multi} = this.props
     if (multi) {
-      const selectedOptions = options.filter(option => (value || []).includes(option.value))
-      return selectedOptions
+      const selectedOptions = (value || []).map(optionValue =>
+        (options || []).find(option => option.value === optionValue)
+      )
+      return selectedOptions.filter(option => !!option)
     } else {
       const selectedOption = options.find(option => option.value === value)
       if (!selectedOption) return
