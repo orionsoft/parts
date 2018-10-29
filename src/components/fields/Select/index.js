@@ -2,6 +2,7 @@ import React from 'react'
 import Select from 'react-select'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
+import isEqual from 'lodash/isEqual'
 
 export default class SelectField extends React.Component {
   static propTypes = {
@@ -22,6 +23,14 @@ export default class SelectField extends React.Component {
 
   state = {}
 
+  componentDidUpdate(prevProps, prevState) {
+    if (!isEqual(prevProps.options, this.props.options)) {
+      if (!this.getValue()) {
+        this.props.onChange(null)
+      }
+    }
+  }
+
   @autobind
   onChange(params) {
     const {multi} = this.props
@@ -41,7 +50,7 @@ export default class SelectField extends React.Component {
       return selectedOptions.filter(option => !!option)
     } else {
       const selectedOption = options.find(option => option.value === value)
-      if (!selectedOption) return
+      if (!selectedOption) return null
       return selectedOption
     }
   }
