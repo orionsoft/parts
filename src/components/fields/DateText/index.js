@@ -65,6 +65,7 @@ export default class DateTextField extends React.Component {
   render() {
     return (
       <div>
+        <div className="label">{this.props.label}</div>
         <div className="os-input-container">
           <input
             className="os-input-text"
@@ -74,6 +75,7 @@ export default class DateTextField extends React.Component {
             {...this.props.passProps}
           />
         </div>
+        <div className="description">{this.props.description}</div>
         <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
