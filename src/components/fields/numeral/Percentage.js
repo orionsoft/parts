@@ -35,7 +35,7 @@ export default class PercentageComponent extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({
         value: this.formatValue(nextProps.value)
@@ -70,6 +70,7 @@ export default class PercentageComponent extends React.Component {
   render() {
     return (
       <div>
+        <div className="label">{this.props.label}</div>
         <div className="os-input-container">
           <input
             className="os-input-text"
@@ -80,6 +81,7 @@ export default class PercentageComponent extends React.Component {
             {...this.props.passProps}
           />
         </div>
+        <div className="description">{this.props.description}</div>
         <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
