@@ -22,7 +22,7 @@ export default class Container extends React.Component {
 
   render() {
     return (
-      <div className="os_container" style={this.props.style}>
+      <div className={this.getClassName()} style={this.props.style}>
         {this.props.children}
       </div>
     )
