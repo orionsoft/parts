@@ -1,19 +1,16 @@
 .os_container {
-  padding-left: 20px;
-  padding-right: 20px;
   margin: 0 auto;
-  margin-left: env(safe-area-inset-left);
-  margin-right: env(safe-area-inset-right);
+  padding: 0 calc(20px + env(safe-area-inset-left));
 }
 
 .os_container_big {
   max-width: 1200px;
 }
 
-.os_container_small {
-  max-width: 600px;
-}
-
 .os_container_medium {
   max-width: 900px;
+}
+
+.os_container_small {
+  max-width: 600px;
 }
