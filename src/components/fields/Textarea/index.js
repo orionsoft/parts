@@ -19,10 +19,14 @@ export default class Textarea extends React.Component {
     autoResize: true
   }
 
-  state = {height: 41}
+  state = {height: 44}
+
+  componentDidMount() {
+    this.autoResize()
+  }
 
   @autobind
-  autoResize(event) {
+  autoResize() {
     if (!this.props.autoResize) return
     const {height} = getHeight(this.refs.input)
     if (this.state.height !== height) {
@@ -39,6 +43,7 @@ export default class Textarea extends React.Component {
   render() {
     return (
       <div>
+        <div className="label">{this.props.label}</div>
         <div className="os-input-container">
           <textarea
             ref="input"
@@ -51,6 +56,7 @@ export default class Textarea extends React.Component {
             {...this.props.passProps}
           />
         </div>
+        <div className="description">{this.props.description}</div>
         <div className="os-input-error">{this.props.errorMessage}</div>
       </div>
     )
