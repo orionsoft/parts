@@ -28,6 +28,7 @@ export default class Textarea extends React.Component {
   @autobind
   autoResize() {
     if (!this.props.autoResize) return
+    if (!this.refs.input) return
     const {height} = getHeight(this.refs.input)
     if (this.state.height !== height) {
       this.setState({height})
