@@ -68,6 +68,7 @@ export default class NComponent extends React.Component {
 
   getValue() {
     if (this.state.label) return this.state.label
+    if (!this.props.value) return ''
     const label = this.formatValue(this.props.value)
     return label
   }
