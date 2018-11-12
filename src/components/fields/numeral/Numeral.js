@@ -57,11 +57,11 @@ export default class NComponent extends React.Component {
       return
     }
     const value = this.unformatValue(label)
-    if (/([.,][0-9]*0|[.,])$/.test(label)) {
-      this.setState({label, value})
-    } else {
-      const formatted = this.formatValue(event.target.value)
+    const formatted = this.formatValue(event.target.value)
+    if (formatted) {
       this.setState({label: formatted, value})
+    } else {
+      this.setState({label, value})
     }
     this.props.onChange(value)
   }
