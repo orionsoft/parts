@@ -1,0 +1,32 @@
+.os-input-container {
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: inherit;
+  border: none;
+  border-radius: 4px;
+}
+
+.os-input-text {
+  flex: 1;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-family: inherit;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  transition: border 0.2s ease;
+  box-shadow: 0 0 0 1px rgba(220, 220, 220, 0.2);
+  &:focus {
+    border: 1px solid #0069ff;
+    box-shadow: 0 0 0 0.5px rgba(49,49,93,.03), 0 2px 5px 0 rgba(49,49,93,.1), 0 1px 2px 0 rgba(0,0,0,.08);
+  }
+}
+
+.os-input-error {
+  color: #ff3030;
+  margin: 10px 0;
+}
