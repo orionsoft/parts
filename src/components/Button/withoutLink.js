@@ -37,6 +37,14 @@ export default class Button extends React.Component {
 
   state = {}
 
+  componentDidMount() {
+    this.mounted = true
+  }
+
+  componentWillUnmount() {
+    this.mounted = false
+  }
+
   getChildProps() {
     const omitKeys = keys(Button.propTypes)
     return omit(this.props, ...omitKeys)
@@ -47,7 +55,9 @@ export default class Button extends React.Component {
     if (this.props.disabled || this.props.loading || this.state.loading) return
     this.setState({loading: true})
     await this.props.onClick()
-    this.setState({loading: false})
+    if (this.mounted) {
+      this.setState({loading: false})
+    }
   }
 
   getClassName() {
