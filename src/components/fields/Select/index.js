@@ -37,7 +37,11 @@ export default class SelectField extends React.Component {
     if (multi) {
       this.props.onChange(params.map(item => item.value))
     } else {
-      this.props.onChange(params.value)
+      if (params.value) {
+        this.props.onChange(params.value)
+      } else {
+        this.props.onChange(null)
+      }
     }
   }
 
