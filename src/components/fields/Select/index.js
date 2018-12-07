@@ -13,6 +13,7 @@ export default class SelectField extends React.Component {
     errorMessage: PropTypes.node,
     label: PropTypes.node,
     description: PropTypes.node,
+    placeholder: PropTypes.string,
     multi: PropTypes.bool,
     options: PropTypes.array
   }
@@ -70,6 +71,7 @@ export default class SelectField extends React.Component {
           value={this.getValue()}
           onChange={this.onChange}
           options={this.props.options}
+          placeholder={this.props.placeholder}
           {...this.props.passProps}
         />
         <div className="description">{this.props.description}</div>
