@@ -108,7 +108,7 @@ module.exports = modalFactory({
     return appendVendorPrefix({
       zIndex: 1050,
       position: 'fixed',
-      width: '500px',
+      width: 'auto',
       transform: 'translate3d(-50%, -50%, 0)',
       top: '50%',
       left: '50%',
