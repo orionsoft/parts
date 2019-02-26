@@ -10,6 +10,20 @@ export default class FormattedNumberComponent extends NumeralFieldComponent {
   }
 
   formatValue(real) {
-    return numeral(real) ? numeral(real).format('0,0.[000000000000000000000]') : ''
+    const delimiter = numeral.localeData().delimiters.decimal
+
+    if (typeof real === 'number') {
+      real = String(real).replace('.', delimiter)
+    }
+
+    const parts = real.split(delimiter)
+
+    const text = numeral(parts[0]) ? numeral(parts[0]).format('0,0.[000000000000000000000]') : ''
+    if (parts[1] || real.includes(delimiter)) {
+      const decimalText = parts[1] ? parts[1].replace(/\D/g, '') : ''
+      return text + delimiter + decimalText
+    } else {
+      return text
+    }
   }
 }
