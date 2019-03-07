@@ -3,6 +3,7 @@ import Select from 'react-select'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
 import isEqual from 'lodash/isEqual'
+import isNil from 'lodash/isNil'
 
 export default class SelectField extends React.Component {
   static propTypes = {
@@ -26,7 +27,7 @@ export default class SelectField extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (!isEqual(prevProps.options, this.props.options)) {
-      if (!this.getValue()) {
+      if (isNil(this.getValue())) {
         this.props.onChange(null)
       }
     }
@@ -38,7 +39,7 @@ export default class SelectField extends React.Component {
     if (multi) {
       this.props.onChange(params.map(item => item.value))
     } else {
-      if (params && params.value) {
+      if (params && !isNil(params.value)) {
         this.props.onChange(params.value)
       } else {
         this.props.onChange(null)
