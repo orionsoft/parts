@@ -44,7 +44,7 @@ export default class ColorPicker extends React.Component {
           {this.state.pickerOpen ? (
             <div className="os-colorpicker-popover">
               <div className="os-colorpicker-cover" onClick={this.closePicker} />
-              <ChromePicker color={this.props.value} onChange={this.onChange} disableAlpha />
+              <ChromePicker color={this.props.value || '#fff'} onChange={this.onChange} disableAlpha />
             </div>
           ) : null}
         </div>
