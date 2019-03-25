@@ -133,6 +133,7 @@ module.exports = modalFactory({
   getContentStyle: function(willHidden) {
     return appendVendorPrefix({
       margin: 0,
+      outline: 'none',
       backgroundColor: 'white',
       animationDuration: (willHidden ? hideAnimation : showAnimation).animationDuration,
       animationFillMode: 'forwards',
