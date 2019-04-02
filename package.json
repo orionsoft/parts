@@ -39,7 +39,7 @@
     "react-apollo": "^2.2.4",
     "react-apollo-decorators": "^2.0.2",
     "react-dom": "^16.5.2",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.0",
     "react-select": "^2.1.0",
     "simple-react-form": "^2.2.1"
   },
@@ -51,7 +51,7 @@
     "react-apollo": "^2.1.8",
     "react-apollo-decorators": "^1.4.28",
     "react-dom": "^16.4.1",
-    "react-router-dom": "^4.3.1",
+    "react-router-dom": "^5.0.0",
     "react-select": "^1.2.1",
     "simple-react-form": "^2.1.3"
   },
