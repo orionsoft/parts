@@ -6,7 +6,9 @@ export default function(ComposedComponent) {
     render() {
       return (
         <ModalContext.Consumer>
-          {showModal => <ComposedComponent {...this.props} showModal={showModal} />}
+          {({showModal, updateModal}) => (
+            <ComposedComponent {...this.props} showModal={showModal} updateModal={updateModal} />
+          )}
         </ModalContext.Consumer>
       )
     }

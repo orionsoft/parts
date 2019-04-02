@@ -9,17 +9,17 @@ import PropTypes from 'prop-types'
 export default class Modal extends React.Component {
   static propTypes = {
     children: PropTypes.node,
-    setShowModal: PropTypes.func
+    setRef: PropTypes.func
   }
 
   state = {}
 
-  @autobind
-  showModal({title, message, confirm, confirmText, cancelText, render}) {
+  showModal = ({title, message, confirm, confirmText, cancelText, children, render}) => {
     this.setState({
       title,
       message,
       confirm,
+      children,
       confirmText,
       cancelText,
       render,
@@ -27,6 +27,10 @@ export default class Modal extends React.Component {
       open: true
     })
     this.refs.modal.show()
+  }
+
+  updateModal = params => {
+    this.setState(params)
   }
 
   @autobind
@@ -44,15 +48,18 @@ export default class Modal extends React.Component {
     this.hideModal()
   }
 
+  renderMessage() {
+    if (this.state.children) return this.state.children
+    return this.state.render ? this.state.render() : this.state.message
+  }
+
   render() {
-    this.props.setShowModal(this.showModal)
+    this.props.setRef(this)
     return (
       <OutlineModal ref="modal" keyboard>
         <div className="os_modal_content">
           <div className="os_title">{this.state.title}</div>
-          <div className="os_message">
-            {this.state.render ? this.state.render() : this.state.message}
-          </div>
+          <div className="os_message">{this.renderMessage()}</div>
           <div className="os_buttons">
             <Button
               disabled={this.state.loading}

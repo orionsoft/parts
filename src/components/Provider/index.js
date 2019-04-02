@@ -23,8 +23,12 @@ export default class OrionsoftProvider extends React.Component {
   render() {
     return (
       <Message>
-        <Modal setShowModal={showModal => (this.showModal = showModal)} />
-        <ModalContext.Provider value={options => this.showModal(options)}>
+        <Modal setRef={modal => (this.modal = modal)} />
+        <ModalContext.Provider
+          value={{
+            showModal: params => this.modal.showModal(params),
+            updateModal: params => this.modal.updateModal(params)
+          }}>
           {this.renderMe()}
         </ModalContext.Provider>
       </Message>
