@@ -4,7 +4,6 @@ import omit from 'lodash/omit'
 import Tooltip from '../Tooltip'
 import BounceLoading from '../BounceLoading'
 import PropTypes from 'prop-types'
-import autobind from 'autobind-decorator'
 
 export default class Button extends React.Component {
   static propTypes = {
@@ -50,8 +49,11 @@ export default class Button extends React.Component {
     return omit(this.props, ...omitKeys)
   }
 
-  @autobind
-  async onClick() {
+  click = () => {
+    return this.onClick()
+  }
+
+  onClick = async () => {
     if (this.props.disabled || this.props.loading || this.state.loading) return
     this.setState({loading: true})
     await this.props.onClick()
