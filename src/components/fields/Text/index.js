@@ -27,6 +27,10 @@ export default class Text extends React.Component {
     }
   }
 
+  focus = () => {
+    this.refs.input.focus()
+  }
+
   render() {
     return (
       <div>
