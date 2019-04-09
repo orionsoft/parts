@@ -11,12 +11,20 @@ export default class Text extends React.Component {
     errorMessage: PropTypes.node,
     disabled: PropTypes.bool,
     label: PropTypes.node,
-    description: PropTypes.node
+    description: PropTypes.node,
+    onEnter: PropTypes.func
   }
 
   static defaultProps = {
     fieldType: 'text',
-    value: ''
+    value: '',
+    onEnter: () => {}
+  }
+
+  handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      this.props.onEnter()
+    }
   }
 
   render() {
@@ -32,6 +40,7 @@ export default class Text extends React.Component {
             placeholder={this.props.placeholder}
             onChange={event => this.props.onChange(event.target.value)}
             disabled={this.props.disabled}
+            onKeyDown={this.handleKeyDown}
             {...this.props.passProps}
           />
         </div>
