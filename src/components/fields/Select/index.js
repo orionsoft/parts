@@ -17,12 +17,14 @@ export default class SelectField extends React.Component {
     placeholder: PropTypes.string,
     multi: PropTypes.bool,
     options: PropTypes.array,
-    isClearable: PropTypes.bool
+    isClearable: PropTypes.bool,
+    component: PropTypes.any
   }
 
   static defaultProps = {
     options: [],
-    isClearable: true
+    isClearable: true,
+    component: Select
   }
 
   state = {}
@@ -64,10 +66,11 @@ export default class SelectField extends React.Component {
   }
 
   render() {
+    const Component = this.props.component
     return (
       <div>
         <div className="label">{this.props.label}</div>
-        <Select
+        <Component
           classNamePrefix="orion-select"
           isMulti={this.props.multi || this.props.isMulti}
           isClearable={this.props.isClearable}
