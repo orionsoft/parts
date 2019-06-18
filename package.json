@@ -1,6 +1,6 @@
 {
   "name": "orionsoft-parts",
-  "version": "1.16.1",
+  "version": "1.17.0",
   "main": "index.js",
   "repository": "http://github.com/orionsoft/parts",
   "author": "nicolaslopezj",
@@ -39,7 +39,7 @@
     "react-apollo": "^2.2.4",
     "react-apollo-decorators": "^2.0.2",
     "react-dom": "^16.5.2",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^5.0.1",
     "react-select": "^2.1.0",
     "simple-react-form": "^2.2.1"
   },
