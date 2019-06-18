@@ -36,6 +36,10 @@ export default class Button extends React.Component {
 
   state = {}
 
+  setOnClick = onClick => {
+    this.overrideOnClick = onClick
+  }
+
   componentDidMount() {
     this.mounted = true
   }
@@ -56,7 +60,11 @@ export default class Button extends React.Component {
   onClick = async () => {
     if (this.props.disabled || this.props.loading || this.state.loading) return
     this.setState({loading: true})
-    await this.props.onClick()
+    if (this.overrideOnClick) {
+      await this.overrideOnClick()
+    } else {
+      await this.props.onClick()
+    }
     if (this.mounted) {
       this.setState({loading: false})
     }
