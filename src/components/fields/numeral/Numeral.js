@@ -2,6 +2,7 @@ import React from 'react'
 import autobind from 'autobind-decorator'
 import isNumber from 'lodash/isNumber'
 import PropTypes from 'prop-types'
+import isNil from 'lodash/isNil'
 
 const numeral = global.numeral
 if (!numeral) {
@@ -23,7 +24,7 @@ export default class NComponent extends React.Component {
   state = {}
 
   componentDidMount() {
-    if (this.props.value) {
+    if (!isNil(this.props.value)) {
       const label = this.formatValue(this.props.value)
       this.setState({label})
     }
@@ -31,7 +32,7 @@ export default class NComponent extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.value !== this.props.value) {
-      if (this.props.value) {
+      if (!isNil(this.props.value)) {
         const label = this.formatValue(this.props.value)
         this.setState({label, value: this.props.value})
       } else {
@@ -68,7 +69,7 @@ export default class NComponent extends React.Component {
 
   getValue() {
     if (this.state.label) return this.state.label
-    if (!this.props.value) return ''
+    if (isNil(this.props.value)) return ''
     const label = this.formatValue(this.props.value)
     return label
   }
