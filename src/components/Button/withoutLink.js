@@ -21,7 +21,8 @@ export default class Button extends React.Component {
     loading: PropTypes.bool,
     fullWidth: PropTypes.bool,
     icon: PropTypes.any,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    confirmText: PropTypes.node
   }
 
   static defaultProps = {
@@ -59,6 +60,15 @@ export default class Button extends React.Component {
 
   onClick = async () => {
     if (this.props.disabled || this.props.loading || this.state.loading) return
+    if (this.props.confirmText) {
+      if (this.state.confirm) {
+        this.setState({confirm: false})
+      } else {
+        this.setState({confirm: true})
+        return
+      }
+    }
+
     this.setState({loading: true})
     if (this.overrideOnClick) {
       await this.overrideOnClick()
@@ -90,6 +100,11 @@ export default class Button extends React.Component {
     return classes.join(' ')
   }
 
+  renderText() {
+    if (this.state.confirm) return this.props.confirmText
+    return this.props.children
+  }
+
   renderInner() {
     if (this.props.loading || this.state.loading) {
       return <BounceLoading />
@@ -98,11 +113,11 @@ export default class Button extends React.Component {
       return (
         <span>
           {this.renderIcon()}
-          {this.props.children}
+          {this.renderText()}
         </span>
       )
     } else {
-      return this.props.label || this.props.children
+      return this.renderText()
     }
   }
 
