@@ -102,7 +102,7 @@ export default class Button extends React.Component {
 
   renderText() {
     if (this.state.confirm) return this.props.confirmText
-    return this.props.children
+    return this.props.label || this.props.children
   }
 
   renderInner() {
