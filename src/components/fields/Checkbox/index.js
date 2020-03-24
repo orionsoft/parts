@@ -23,12 +23,18 @@ export default class Checkbox extends React.Component {
     }
   }
 
+  focus = () => {
+    if (!this.input) return
+    this.input.focus()
+  }
+
   render() {
     const {onChange, value, trueLabel, falseLabel, label, disabled} = this.props
     return (
       <div className="os-checkbox-container">
         <label>
           <input
+            ref={input => (this.input = input)}
             type="checkbox"
             checked={!!value}
             disabled={disabled}
