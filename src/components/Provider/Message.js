@@ -5,25 +5,25 @@ import ShowMessageContext from '../../contexts/ShowMessageContext'
 
 export default class WithMessage extends React.Component {
   static propTypes = {
-    children: PropTypes.node
+    children: PropTypes.node,
   }
 
   static childContextTypes = {
-    showMessage: PropTypes.func
+    showMessage: PropTypes.func,
   }
 
   getChildContext() {
     return {
-      showMessage: this.showMessage
+      showMessage: this.showMessage,
     }
   }
 
-  show(message, level) {
-    const options = {
+  show(message, options = {}) {
+    this.refs.notificationSystem.addNotification({
       message,
-      level: level || 'info'
-    }
-    this.refs.notificationSystem.addNotification(options)
+      level: 'info',
+      ...options,
+    })
   }
 
   constructor(props) {
@@ -46,21 +46,33 @@ export default class WithMessage extends React.Component {
     return texts.join(', ')
   }
 
-  showMessage(message) {
+  showMessage(message, options) {
     if (typeof message === 'string') {
-      this.show(message)
+      this.show(message, options)
     } else if (message.graphQLErrors) {
       for (const graphError of message.graphQLErrors) {
         if (graphError.error === 'validationError') {
-          this.show(this.getValidationErrorString(graphError), 'error')
+          this.show(this.getValidationErrorString(graphError), {
+            level: 'error',
+            options,
+          })
         } else {
-          this.show(graphError.message, 'error')
+          this.show(graphError.message, {
+            level: 'error',
+            options,
+          })
         }
       }
     } else if (message.message) {
-      this.show(message.message, 'error')
+      this.show(message.message, {
+        level: 'error',
+        options,
+      })
     } else {
-      this.show(message, 'error')
+      this.show(message, {
+        level: 'error',
+        options,
+      })
     }
   }
 
@@ -72,27 +84,27 @@ export default class WithMessage extends React.Component {
           backgroundColor: 'rgba(0, 0, 0, 0.8)',
           color: '#fff',
           borderTop: 'none',
-          boxShadow: 'none'
+          boxShadow: 'none',
         },
         error: {
-          backgroundColor: '#be0606'
-        }
+          backgroundColor: '#be0606',
+        },
       },
       Dismiss: {
         DefaultStyle: {
-          display: 'none'
-        }
+          display: 'none',
+        },
       },
       Action: {
         DefaultStyle: {
           outline: 'none',
-          cursor: 'pointer'
+          cursor: 'pointer',
         },
         info: {
           backgroundColor: '#fff',
-          color: '#000'
-        }
-      }
+          color: '#000',
+        },
+      },
     }
   }
 
