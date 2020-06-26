@@ -57,9 +57,7 @@ export default class DateTextField extends React.Component {
 
   @autobind
   onBlur() {
-    if (!this.props.value) {
-      this.setState({text: ''})
-    }
+    this.setState({text: ''})
   }
 
   render() {
