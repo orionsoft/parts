@@ -16,6 +16,7 @@ export default class SelectField extends React.Component {
     description: PropTypes.node,
     placeholder: PropTypes.string,
     multi: PropTypes.bool,
+    // @dev options is an array of objects like -> options=[{value, label}]
     options: PropTypes.array,
     isClearable: PropTypes.bool,
     component: PropTypes.any
