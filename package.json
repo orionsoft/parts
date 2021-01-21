@@ -8,7 +8,8 @@
   "scripts": {
     "build": "rm -rf ./lib && babel ./src --out-dir ./lib && yarn run build-styles",
     "build-styles": "find src/ -name '*.less' ! -name '*import.less' -exec lessc {} \\; > ./lib/styles.css",
-    "prepublish": "yarn run build",
+    "prepublishOnly": "yarn run build",
+    "prepare": "yarn run build",
     "test": "exit 0",
     "watch": "node watch.js",
     "test-watch": "jest --watch",
