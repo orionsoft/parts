@@ -1,8 +1,8 @@
 {
-  "name": "orionsoft-parts",
+  "name": "@getjusto/parts",
   "version": "1.19.3",
   "main": "index.js",
-  "repository": "http://github.com/orionsoft/parts",
+  "repository": "http://github.com/getjusto/parts",
   "author": "nicolaslopezj",
   "license": "MIT",
   "scripts": {
