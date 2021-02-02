@@ -1,13 +1,7 @@
 import React from 'react'
 import autobind from 'autobind-decorator'
 import PropTypes from 'prop-types'
-
-const moment = global.moment
-
-if (!moment) {
-  throw new Error('Moment is required in global variable')
-}
-
+import dayjs from 'dayjs'
 export default class DateTextField extends React.Component {
   static propTypes = {
     onChange: PropTypes.func,
@@ -17,11 +11,11 @@ export default class DateTextField extends React.Component {
     errorMessage: PropTypes.string,
     disabled: PropTypes.bool,
     passProps: PropTypes.object,
-    format: PropTypes.string
+    format: PropTypes.string,
   }
 
   static defaultProps = {
-    format: 'DD-MM-YYYY'
+    format: 'DD-MM-YYYY',
   }
 
   state = {text: ''}
@@ -32,7 +26,7 @@ export default class DateTextField extends React.Component {
   }
 
   getValue() {
-    return this.props.value ? moment(this.props.value).format(this.props.format) : this.state.text
+    return this.props.value ? dayjs(this.props.value).format(this.props.format) : this.state.text
   }
 
   replaceTexts(text, previous) {
@@ -50,7 +44,7 @@ export default class DateTextField extends React.Component {
     if (this.replaceTexts(text, this.state.text)) return
     this.setState({text})
     if (text.length !== 10) return this.props.onChange(null)
-    const newValue = moment(text, this.props.format)
+    const newValue = dayjs(text, this.props.format)
     if (!newValue.isValid()) return this.props.onChange(null)
     this.props.onChange(newValue.toDate())
   }
